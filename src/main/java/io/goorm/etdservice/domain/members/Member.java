@@ -4,6 +4,7 @@ package io.goorm.etdservice.domain.members;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.BaseEntity;
+import io.goorm.etdservice.domain.games.entity.Server;
 import io.goorm.etdservice.global.security.OAuth2Attribute;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -11,6 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -50,10 +52,8 @@ public class Member extends BaseEntity {
     @Column()
     private String profileImage;
 
-    //TODO 회원가입 시 추가 정보 기입이 필요한지?
-//    @Column
-//    private boolean is
-
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Server> servers;
 
 
     /* 토큰 관련 */

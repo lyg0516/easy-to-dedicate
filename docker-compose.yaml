@@ -1,0 +1,36 @@
+## Local Test Only
+
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    # 환경 변수
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB} # etd
+      - POSTGRES_USER=${POSTGRES_USER} # postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD} # etd112233
+    ports:  # 외부 포트포워딩 (DB Admin Tool 데이터 확인 목적으로 사용 중)
+      - 5432:5432
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+

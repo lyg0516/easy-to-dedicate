@@ -34,6 +34,20 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize       // 권한 지정
+                        // Static
+                        .requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/images/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/js/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
+
+                        // login
+                        .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
+
+                        // API
+                        .requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
+
+                        // Temp All Req
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
                 )
                 // 세션 사용 설정

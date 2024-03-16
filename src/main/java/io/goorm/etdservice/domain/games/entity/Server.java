@@ -3,6 +3,7 @@ package io.goorm.etdservice.domain.games.entity;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.BaseEntity;
+import io.goorm.etdservice.domain.games.type.GameType;
 import io.goorm.etdservice.domain.members.Member;
 import io.goorm.etdservice.domain.games.type.TermType;
 import jakarta.persistence.*;
@@ -26,7 +27,8 @@ public class Server extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-
+    @Enumerated(EnumType.STRING)
+    private GameType game;
     @Enumerated(EnumType.STRING)
     private TermType term;
     @Column(length = 8)

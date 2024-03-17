@@ -42,8 +42,8 @@ public class Server extends BaseEntity {
     @Column(length = 365)
     private Integer days;
     @Column()
-    private LocalDateTime requestAt;
+    private LocalDateTime requestedAt;
     @Column()
-    private LocalDateTime confirmAt;
+    private LocalDateTime confirmedAt;
 
 }

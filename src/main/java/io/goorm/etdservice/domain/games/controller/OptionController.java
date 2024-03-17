@@ -17,12 +17,12 @@ import java.util.UUID;
 public class OptionController {
 
 
-    @PutMapping("/server/{id}/palworld")
+    @PutMapping("/palworld{id}")
     public ResponseEntity updatePalworldOption(@PathVariable UUID id, @RequestBody() PalworldOptionDto option) {
         return null;
     }
 
-    @PutMapping("/server/{id}/enshrouded")
+    @PutMapping("/enshrouded/{id}")
     public ResponseEntity updateEnshroudedOption(@PathVariable UUID id, @RequestBody() EnshroudedOptionDto option) {
         return null;
     }

@@ -1,11 +1,11 @@
-package io.goorm.etdservice.domain.games.entity;
+package io.goorm.etdservice.domain.servers.entity;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import io.goorm.etdservice.domain.common.BaseEntity;
-import io.goorm.etdservice.domain.games.type.GameType;
+import io.goorm.etdservice.domain.common.entity.BaseEntity;
+import io.goorm.etdservice.domain.common.types.GameType;
 import io.goorm.etdservice.domain.members.Member;
-import io.goorm.etdservice.domain.games.type.TermType;
+import io.goorm.etdservice.domain.common.types.TermType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,8 +42,8 @@ public class Server extends BaseEntity {
     @Column(length = 365)
     private Integer days;
     @Column()
-    private LocalDateTime requestAt;
+    private LocalDateTime requestedAt;
     @Column()
-    private LocalDateTime confirmAt;
+    private LocalDateTime confirmedAt;
 
 }

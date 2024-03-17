@@ -1,4 +1,4 @@
-package io.goorm.etdservice.domain.games.type;
+package io.goorm.etdservice.domain.common.types;
 
 import lombok.Getter;
 

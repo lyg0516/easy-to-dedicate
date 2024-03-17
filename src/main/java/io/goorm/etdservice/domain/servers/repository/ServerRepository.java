@@ -1,6 +1,6 @@
-package io.goorm.etdservice.domain.games.repository;
+package io.goorm.etdservice.domain.servers.repository;
 
-import io.goorm.etdservice.domain.games.entity.Server;
+import io.goorm.etdservice.domain.servers.entity.Server;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

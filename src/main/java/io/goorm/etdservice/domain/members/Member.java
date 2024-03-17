@@ -3,8 +3,8 @@ package io.goorm.etdservice.domain.members;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import io.goorm.etdservice.domain.common.BaseEntity;
-import io.goorm.etdservice.domain.games.entity.Server;
+import io.goorm.etdservice.domain.common.entity.BaseEntity;
+import io.goorm.etdservice.domain.servers.entity.Server;
 import io.goorm.etdservice.global.security.OAuth2Attribute;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

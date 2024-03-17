@@ -1,4 +1,4 @@
-package io.goorm.etdservice.domain.common;
+package io.goorm.etdservice.domain.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

@@ -1,30 +1,33 @@
-package io.goorm.etdservice.domain.servers.entity;
+package io.goorm.etdservice.domain.games.entity;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
-import io.goorm.etdservice.domain.servers.types.ControlType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ServerControl extends BaseEntity {
+public class Game extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "game_id")
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Server server;
-    @Enumerated(EnumType.STRING)
-    private ControlType control;
-    private LocalDateTime appliedAt;
+    @Column(length = 30)
+    private String name;
+    @Column
+    private String description;
+
+
+
+    //TODO 지정 옵션 목록 데이터 컬럼 만들기
+    //TODO Thumbnail Image 연결 - S3 사용??
+
 
 }

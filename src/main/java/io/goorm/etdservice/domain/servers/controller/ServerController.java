@@ -1,6 +1,5 @@
 package io.goorm.etdservice.domain.servers.controller;
 
-import io.goorm.etdservice.domain.common.types.GameType;
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ public class ServerController {
 
     // 서버 조회 API
     @GetMapping("")
-    public ResponseEntity getServers(@RequestParam("member") UUID memberId, @RequestParam("game")GameType game) {
+    public ResponseEntity getServers(@RequestParam("memberId") UUID memberId, @RequestParam("gameId")Long gameId) {
         return null;
     }
 

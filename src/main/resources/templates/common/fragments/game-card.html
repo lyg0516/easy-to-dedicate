@@ -1,0 +1,42 @@
+<!--<html lang="en"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      th:fragment="GameCardFragment"-->
+<!--&gt;-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:fragment="GameCardHead">
+<!--  <link rel="stylesheet" href="../../../static/css/game-card.css">-->
+  <link rel="stylesheet" th:href="@{/css/game-card.css}">
+  <script type="module" th:src="@{/js/game_card.js}"></script>
+</head>
+
+
+<template id="card-template">
+  <div class="card-container" th:fragment="GameCardFragment">
+    <a href="/" class="hero-image-container">
+      <img class="hero-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube"/>
+    </a>
+    <main class="main-content">
+      <h1><a href="#">Game Name</a></h1>
+      <p>Game Detail Description ... Front is Very Fuck!</p>
+      <div class="flex-row">
+        <div class="coin-base">
+          <img src="https://i.postimg.cc/T1F1K0bW/Ethereum.png" alt="Ethereum" class="small-image"/>
+          <h2>0.041 ETH</h2>
+        </div>
+        <div class="time-left">
+          <img src="https://i.postimg.cc/prpyV4mH/clock-selection-no-bg.png" alt="clock" class="small-image"/>
+          <p>3 days left</p>
+        </div>
+      </div>
+    </main>
+    <div class="card-attribute">
+      <img src="https://i.postimg.cc/SQBzNQf1/image-avatar.png" alt="avatar" class="small-avatar"/>
+      <p>Creation of <span><a href="#">Jules Wyvern</a></span></p>
+    </div>
+  </div>
+</template>
+
+</html>

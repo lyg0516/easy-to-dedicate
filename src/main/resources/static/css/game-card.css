@@ -79,24 +79,24 @@ Font Styling
 =========================
 */
 
-h1 {
+.card-container h1 {
     font: var(--var-heading);
     color: var(--var-lightest);
     padding: 1.2em 0;
 }
 
-h2 {
+.card-container h2 {
     font: var(--var-small-heading);
     color: var(--var-lightest);
     /* padding on .coin-base */
 }
 
-p {
+.card-container p {
     font: var(--var-para);
     color: var(--var-soft-blue);
 }
 
-span {
+.card-container span {
     color: white;
 }
 /*
@@ -110,14 +110,14 @@ Classes
 .card-container {
     width: 100%;
     max-width: 400px;
-    margin: 2em auto;
+    /*margin: 2em auto;*/
     background-color: var(--var-card-dark);
     border-radius: 15px;
     margin-bottom: 1rem;
     padding: 2rem;
 }
 
-div.flex-row {
+.card-container div.flex-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -192,7 +192,7 @@ img.eye {
     margin-right: 1.4em;
 }
 
-div.attribution {
+.card-container div.attribution {
     margin: 0 auto;
     width: 100%;
     font: var(--var-para);
@@ -200,7 +200,7 @@ div.attribution {
     padding: 1.5em 0 4em 0;
     color: var(--var-line-dark);
 }
-.attribution a {
+.card-container .attribution a {
     color: var(--var-soft-blue);
 }
 

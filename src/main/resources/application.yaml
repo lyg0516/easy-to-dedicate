@@ -27,3 +27,16 @@ spring:
     properties:
       hibernate:
         default_batch_fetch_size: 100 # Specify the batch size 100
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+    queue:
+      name: ${RABBITMQ_QUEUE_NAME}
+    exchange:
+      name: ${RABBITMQ_EXCHANGE_NAME}
+    routing:
+      key: ${RABBITMQ_ROUTING_KEY}

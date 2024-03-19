@@ -24,6 +24,9 @@ public class Game extends BaseEntity {
     @Column
     private String description;
 
+    @Column
+    private String imgUrl;
+
 
 
     //TODO 지정 옵션 목록 데이터 컬럼 만들기

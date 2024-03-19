@@ -12,10 +12,21 @@ public class PageController {
         return "home"; // "hello"는 템플릿의 파일명 (hello.html)를 가리킵니다.
     }
 
-    @GetMapping("/game")
+    @GetMapping("/games")
     public String gamePage() {
-        return "pages/game";
+        return "pages/games/games";
     }
+
+    @GetMapping("/games/palworld")
+    public String gamePalworldPage() {
+        return "pages/games/palworld";
+    }
+
+    @GetMapping("/games/enshrouded")
+    public String gameEnshroudedPage() {
+        return "pages/games/enshrouded";
+    }
+
 
     @GetMapping("/login-page")
     String login() {

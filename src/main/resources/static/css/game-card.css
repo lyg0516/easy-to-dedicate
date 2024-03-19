@@ -44,26 +44,26 @@ Setup
 =======================
 */
 
-html {
-    box-sizing: border-box;
-}
+/*html {*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-*, *::before, *::after {
-    box-sizing: inherit;
-    margin: 0;
-}
+/**, *::before, *::after {*/
+/*    box-sizing: inherit;*/
+/*    margin: 0;*/
+/*}*/
 
 /*body {*/
 /*    background-color: var(--var-main-darkest);*/
 /*}*/
 
-img {
+.card-container img {
     width: 100%;
     border-radius: 15px;
     display: block;
 }
 
-a {
+.card-container a {
     color: inherit;
 }
 
@@ -109,7 +109,8 @@ Classes
 
 .card-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
+    aspect-ratio: 1.5;
     /*margin: 2em auto;*/
     background-color: var(--var-card-dark);
     border-radius: 15px;

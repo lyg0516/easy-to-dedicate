@@ -6,10 +6,7 @@ import io.goorm.etdservice.domain.games.service.GameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,8 +31,12 @@ public class GameController {
     }
 
     @PostMapping()
-    public ResponseEntity createGame() {
-        return null;
+    public ResponseEntity createGame(@RequestBody() GameDto dto) {
+
+        //TODO Game Image MultipartFile 업로드 기능 추가 필요
+
+        Long gameId = gameService.createGames(dto);
+        return ResponseEntity.ok().body(gameId);
     }
 
 

@@ -21,5 +21,16 @@ public class GameService {
         return games.stream().map(GameDto::toDto).collect(Collectors.toList());
     }
 
+    public Long createGames(GameDto dto) {
+        Game game = Game.builder()
+                .name(dto.getName())
+                .description(dto.getDescription())
+                .imgUrl(dto.getImgUrl())
+                .build();
+        gameRepository.save(game);
+
+        return game.getId();
+    }
+
 
 }

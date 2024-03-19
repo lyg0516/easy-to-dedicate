@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,5 +33,11 @@ public class Game extends BaseEntity {
     //TODO 지정 옵션 목록 데이터 컬럼 만들기
     //TODO Thumbnail Image 연결 - S3 사용??
 
-
+    @Builder
+    public Game(Long id, String name, String description, String imgUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imgUrl = imgUrl;
+    }
 }

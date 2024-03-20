@@ -110,12 +110,13 @@ Classes
 .card-container {
     width: 100%;
     max-width: 300px;
-    aspect-ratio: 1.5;
     /*margin: 2em auto;*/
     background-color: var(--var-card-dark);
     border-radius: 15px;
     margin-bottom: 1rem;
     padding: 2rem;
+    border: 1px blue solid;
+    aspect-ratio: 1 / 1.2; /* 원하는 비율로 설정하세요, 예: 가로 1, 세로 1 */
 }
 
 .card-container div.flex-row {

@@ -12,7 +12,7 @@ public class RabbitMQConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQConsumer.class);
 
     @RabbitListener(queues = {"etd_consume_queue"})
-    public void consume(String message){
-        LOGGER.info(String.format("Received message -> %s", message));
+    public void consume(Object object){
+        LOGGER.info(String.format("Received message -> %s", object.toString()));
     }
 }

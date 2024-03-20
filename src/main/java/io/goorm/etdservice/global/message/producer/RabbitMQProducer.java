@@ -1,6 +1,8 @@
 package io.goorm.etdservice.global.message.producer;
 
 import io.goorm.etdservice.global.message.config.RabbitMQConstant;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -18,8 +20,8 @@ public class RabbitMQProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(String message){
-        LOGGER.info(String.format("Message send -> %s", message));
-        rabbitTemplate.convertAndSend(RabbitMQConstant.ProduceExchangeName, RabbitMQConstant.ProduceRoutingKey, message);
+    public void sendMessage(Object object){
+        LOGGER.info(String.format("Message send -> %s", object.toString()));
+        rabbitTemplate.convertAndSend(RabbitMQConstant.ProduceExchangeName, RabbitMQConstant.ProduceRoutingKey, object);
     }
 }

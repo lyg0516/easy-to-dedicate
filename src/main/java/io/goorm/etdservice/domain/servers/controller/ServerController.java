@@ -1,6 +1,7 @@
 package io.goorm.etdservice.domain.servers.controller;
 
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
+import io.goorm.etdservice.domain.servers.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class ServerController {
+
+    private final ServerService serverService;
 
     // 서버 조회 API
     @GetMapping("")

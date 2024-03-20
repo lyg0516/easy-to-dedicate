@@ -34,9 +34,19 @@ spring:
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
 
-    queue:
-      name: ${RABBITMQ_QUEUE_NAME}
-    exchange:
-      name: ${RABBITMQ_EXCHANGE_NAME}
-    routing:
-      key: ${RABBITMQ_ROUTING_KEY}
+#    produce:
+#      queue:
+#        name: etd_produce_queue
+#      exchange:
+#        name: etd_produce_exchange
+#      routing:
+#        key: etd_produce_routing_key
+#
+#    consume:
+#      queue:
+#        name: etd_consume_queue
+#      exchange:
+#        name: etd_consume_exchange
+#      routing:
+#        key: etd_consume_routing_key
+#

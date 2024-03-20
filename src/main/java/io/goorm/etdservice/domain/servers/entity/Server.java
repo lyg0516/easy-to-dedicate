@@ -12,7 +12,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -41,15 +40,15 @@ public class Server extends BaseEntity {
     private String location;                // 지역 또는 클러스터 정보
     @Column(length = 365)
     private Integer days;                   // 서버 활성화 기간
-    @Column()
-    private LocalDateTime requestedAt;      // 요청 시간
-    @Column()
-    private LocalDateTime confirmedAt;      // 처리 완료 시간
 
     //TODO 서버와 요청 관련 테이블을 분리하는게 나은가? 고민할 것!
+    //TODO 추가 파라메터들은 OneToOne 으로 분리 방향 고려할 것!
 
     @Builder
-    public Server(UUID id, Member member, Game game, TermType term, Integer cpu, Integer ram, Integer slot, String location, Integer days, LocalDateTime requestedAt, LocalDateTime confirmedAt) {
+    public Server(UUID id, Member member, Game game,
+                  TermType term,
+                  Integer cpu, Integer ram, Integer slot,
+                  String location, Integer days) {
         this.id = id;
         this.member = member;
         this.game = game;
@@ -59,8 +58,6 @@ public class Server extends BaseEntity {
         this.slot = slot;
         this.location = location;
         this.days = days;
-        this.requestedAt = requestedAt;
-        this.confirmedAt = confirmedAt;
     }
 
 

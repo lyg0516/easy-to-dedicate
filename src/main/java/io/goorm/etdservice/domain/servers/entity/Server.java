@@ -8,10 +8,10 @@ import io.goorm.etdservice.domain.members.Member;
 import io.goorm.etdservice.domain.common.types.TermType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,28 +24,41 @@ public class Server extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "server_id", length = 32, updatable = false)
     private UUID id;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
-//    @Enumerated(EnumType.STRING)
-//    private GameType game;
+    private Member member;                  // 서버 소유 멤버
     @ManyToOne(fetch = FetchType.LAZY)
-    private Game game;
+    private Game game;                      // 서버의 게임 종류
     @Enumerated(EnumType.STRING)
-    private TermType term;
+    private TermType term;                  // 고정 기간제, 시간제
     @Column(length = 8)
-    private Integer cpu;
+    private Integer cpu;                    // 할당 리소스 CPU
     @Column(length = 64)
-    private Integer ram;
+    private Integer ram;                    // 할당 리소스 RAM
     @Column()
-    private Integer slot;
+    private Integer slot;                   // 슬롯 - Player 수
     @Column(length = 100)
-    private String location;
+    private String location;                // 지역 또는 클러스터 정보
     @Column(length = 365)
-    private Integer days;
-    @Column()
-    private LocalDateTime requestedAt;
-    @Column()
-    private LocalDateTime confirmedAt;
+    private Integer days;                   // 서버 활성화 기간
+
+    //TODO 서버와 요청 관련 테이블을 분리하는게 나은가? 고민할 것!
+    //TODO 추가 파라메터들은 OneToOne 으로 분리 방향 고려할 것!
+
+    @Builder
+    public Server(UUID id, Member member, Game game,
+                  TermType term,
+                  Integer cpu, Integer ram, Integer slot,
+                  String location, Integer days) {
+        this.id = id;
+        this.member = member;
+        this.game = game;
+        this.term = term;
+        this.cpu = cpu;
+        this.ram = ram;
+        this.slot = slot;
+        this.location = location;
+        this.days = days;
+    }
+
 
 }

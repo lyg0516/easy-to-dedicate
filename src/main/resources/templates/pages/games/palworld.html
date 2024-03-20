@@ -7,11 +7,68 @@
       layout:fragment="Content"
 >
 <head>
-
+  <link th:inline="css" th:href="@{/css/option-card.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="content">
-  <h1>Palworld Detail Page</h1>
+  <header th:replace="/common/fragments/header :: HeaderFragment"></header>
+  <div>
+    <h2> 옵션 생성 구간 - 옵션 Grid 구성 진행 </h2>
+    <div class="container">
+      <section class="card">
+        <div class="product-image">
+          <img src="https://i.ibb.co/cNWqxGx/red.png" alt="OFF-white Red Edition" draggable="false" />
+        </div>
+        <div class="product-info">
+          <h2>First Option</h2>
+          <p>The 10: Air Jordan 1 off-white - Chicago</p>
+          <div class="price">$999</div>
+        </div>
+        <div class="btn">
+          <button class="buy-btn">Buy Now</button>
+      </section>
+      <section class="card">
+        <div class="product-image">
+          <img src="https://i.ibb.co/cNWqxGx/red.png" alt="OFF-white Red Edition" draggable="false" />
+        </div>
+        <div class="product-info">
+          <h2>Second Option</h2>
+          <p>The 10: Air Jordan 1 off-white - Chicago</p>
+          <div class="price">$999</div>
+        </div>
+        <div class="btn">
+          <button class="buy-btn">Buy Now</button>
+      </section>
+      <section class="card">
+        <div class="product-image">
+          <img src="https://i.ibb.co/cNWqxGx/red.png" alt="OFF-white Red Edition" draggable="false" />
+        </div>
+        <div class="product-info">
+          <h2>Third Option</h2>
+          <p>The 10: Air Jordan 1 off-white - Chicago</p>
+          <div class="price">$999</div>
+        </div>
+        <div class="btn">
+          <button class="buy-btn">Buy Now</button>
+      </section>
+      <section class="card">
+        <div class="product-image">
+          <img src="https://i.ibb.co/cNWqxGx/red.png" alt="OFF-white Red Edition" draggable="false" />
+        </div>
+        <div class="product-info">
+          <h2>Custom Option</h2>
+          <p>The 10: Air Jordan 1 off-white - Chicago</p>
+          <div class="price">$999</div>
+        </div>
+        <div class="btn">
+          <button class="buy-btn">Buy Now</button>
+      </section>
+    </div>
+  </div>
+  <div>
+    <h2>기타 설명 구간</h2>
+  </div>
+
 </div>
 </body>
 </html>

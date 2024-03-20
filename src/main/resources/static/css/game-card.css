@@ -44,26 +44,26 @@ Setup
 =======================
 */
 
-html {
-    box-sizing: border-box;
-}
+/*html {*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-*, *::before, *::after {
-    box-sizing: inherit;
-    margin: 0;
-}
+/**, *::before, *::after {*/
+/*    box-sizing: inherit;*/
+/*    margin: 0;*/
+/*}*/
 
 /*body {*/
 /*    background-color: var(--var-main-darkest);*/
 /*}*/
 
-img {
+.card-container img {
     width: 100%;
     border-radius: 15px;
     display: block;
 }
 
-a {
+.card-container a {
     color: inherit;
 }
 
@@ -109,12 +109,14 @@ Classes
 
 .card-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     /*margin: 2em auto;*/
     background-color: var(--var-card-dark);
     border-radius: 15px;
     margin-bottom: 1rem;
     padding: 2rem;
+    border: 1px blue solid;
+    aspect-ratio: 1 / 1.2; /* 원하는 비율로 설정하세요, 예: 가로 1, 세로 1 */
 }
 
 .card-container div.flex-row {

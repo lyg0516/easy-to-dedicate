@@ -66,14 +66,34 @@ public class ServerService {
 
     }
 
-    public void restartServer(UUID serverId) {
+    public void restartServer(UUID serverId) throws DomainException {
+
+        Server server = serverRepository.findById(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+
+        ServerControl.builder()
+                .server(server)
+                .control(ControlType.RESTART)
+//                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
+                .build();
+
         // TODO Game Deploy 게임서버 재시작 요청
     }
 
-    public void deleteServer(UUID serverId) {
+    public void deleteServer(UUID serverId) throws DomainException {
         // TODO Game Deploy 게임서버 삭제 요청
         // TODO 삭제는 게임 서버 유지 기간 체크 후 자동 삭제를 기본으로 한다.
         // TODO API 존재 이유는 환불, 기타 문제에 대처하기 위한 API 이다.
+
+        Server server = serverRepository.findById(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+
+        ServerControl.builder()
+                .server(server)
+                .control(ControlType.STOP)
+//                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
+                .build();
+
     }
 
     public void getServers(UUID memberId) throws DomainException {

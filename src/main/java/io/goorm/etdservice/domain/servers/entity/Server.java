@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.games.entity.Game;
 import io.goorm.etdservice.domain.members.Member;
-import io.goorm.etdservice.domain.common.types.TermType;
+import io.goorm.etdservice.domain.servers.types.TermType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

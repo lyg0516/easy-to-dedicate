@@ -1,4 +1,4 @@
-package io.goorm.etdservice.domain.common.types;
+package io.goorm.etdservice.domain.servers.types;
 
 import lombok.Getter;
 

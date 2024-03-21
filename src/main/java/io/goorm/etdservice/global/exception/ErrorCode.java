@@ -18,7 +18,8 @@ public enum ErrorCode {
 
 
     /* 409 CONFLICT : Resource 의 현재 상태와 충돌. 보통 중복된 데이터 존재 */
-    DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다");
+    DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다"),
+    INVALID_IMAGE_FILE(BAD_REQUEST, "이미지 파일이 잘못되었습니다.");
 
     private final HttpStatus httpStatus;
     private final String detail;

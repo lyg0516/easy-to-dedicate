@@ -28,6 +28,7 @@ spring:
       hibernate:
         default_batch_fetch_size: 100 # Specify the batch size 100
 
+
   rabbitmq:
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}
@@ -50,3 +51,13 @@ spring:
 #      routing:
 #        key: etd_consume_routing_key
 #
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region: ${AWS_STATIC_REGION}
+    s3:
+      bucket: ${AWS_S3_BUCKET}
+

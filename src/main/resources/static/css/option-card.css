@@ -9,7 +9,7 @@
 }
 
 section {
-    border: 1px blue solid;
+    /*border: 1px blue solid;*/
 }
 
 .container {
@@ -30,9 +30,22 @@ section {
     box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
     border-radius: 0.9rem;
     background-color: var(--red-card);
+    border: white 10px solid;
     color: var(--text);
     cursor: pointer;
 }
+
+/* 컬러 조합 : https://colorhunt.co/palette/ffaf45fb6d48d74b76673f69*/
+.card#first-opt {
+    background-color: #FFAF45;
+}
+.card#second-opt {
+    background-color: #FB6D48;
+}
+.card#third-opt {
+    background-color: #D74B76;
+}
+
 
 .product-image img {
     max-width: 100%;
@@ -54,8 +67,25 @@ section {
     /*text-align: center;*/
 }
 
-.card:hover .product-image {
+.card:hover .product-image.default {
     transform: translate(-1.5rem, -7rem) rotate(-20deg);
+}
+
+.card:hover .product-image.joystic {
+    animation: vibration .1s infinite;
+}
+
+.card:hover .product-image.gamepad {
+    animation: vibration .1s infinite;
+}
+
+@keyframes vibration {
+    from {
+        transform: rotate(1.2deg);
+    }
+    to {
+        transform: rotate(-1.2deg);
+    }
 }
 
 .product-info h2 {

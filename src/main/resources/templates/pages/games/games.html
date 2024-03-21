@@ -29,8 +29,9 @@
     </style>
 </head>
 <body>
+<header th:replace="/common/fragments/header :: HeaderFragment"></header>
 <div class="content">
-    <header th:replace="/common/fragments/header :: HeaderFragment"></header>
+
     <div th:replace="/common/fragments/game-card :: GameCardFragment"></div>
 </div>
 </body>

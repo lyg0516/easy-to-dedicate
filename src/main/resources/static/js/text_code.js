@@ -14,7 +14,7 @@ function WordShuffler(holder,opt){
 
 
     let options = {
-        fps : 20,
+        fps : 30,
         timeOffset : 5,
         textColor : '#000',
         fontSize : "50px",
@@ -209,29 +209,30 @@ console.log('TEXT Code Run!');
 
 let headline = document.getElementById('headline');
 let text = document.getElementById('text');
-let shuffler = document.getElementById('shuffler');
+// let shuffler = document.getElementById('shuffler');
 
 let headText = new WordShuffler(headline,{
     textColor : '#fff',
-    timeOffset : 18,
+    timeOffset : 2,
     mixCapital : true,
     mixSpecialCharacters : true
 });
 
 let pText = new WordShuffler(text,{
-    textColor : '#fff',
-    timeOffset : 2
+    // textColor : '#fff',
+    textColor : '#000',
+    timeOffset : 3
 });
 
-let buttonText = new WordShuffler(shuffler,{
-    textColor : 'tomato',
-    timeOffset : 10
-});
+// let buttonText = new WordShuffler(shuffler,{
+//     textColor : 'tomato',
+//     timeOffset : 10
+// });
 
 
 
-shuffler.addEventListener('click',function () {
-    headText.restart();
-    pText.restart();
-    buttonText.restart();
-});
+// shuffler.addEventListener('click',function () {
+//     headText.restart();
+//     pText.restart();
+//     buttonText.restart();
+// });

@@ -3,8 +3,8 @@
     --dark-color-lighten: #f2f5ff;
     --red-card: #a62121;
     --blue-card: #4bb7e6;
-    --btn: #141414;
-    --btn-hover: #3a3a3a;
+    --btn: #332941;
+    --btn-hover: #3468C0;
     --text: #fbf7f7;
 }
 
@@ -62,6 +62,7 @@ section {
     transform: translate(0, -1.5rem);
     transition: transform 500ms ease-in-out;
     filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
+    border: 1px blue solid;
 }
 .product-info {
     /*text-align: center;*/
@@ -71,11 +72,15 @@ section {
     transform: translate(-1.5rem, -7rem) rotate(-20deg);
 }
 
-.card:hover .product-image.joystic {
+.card:hover .product-image.joystick {
     animation: vibration .1s infinite;
 }
 
 .card:hover .product-image.gamepad {
+    animation: vibration .1s infinite;
+}
+
+.card:hover .product-image.famicom {
     animation: vibration .1s infinite;
 }
 
@@ -100,11 +105,18 @@ section {
 
 .buy-btn {
     background-color: var(--btn);
+    width: 100%;
     padding: 0.6rem 3.5rem;
     font-weight: 600;
     font-size: 1rem;
     transition: 300ms ease;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.21);
+    border-bottom: 4px solid rgba(0,0,0,0.21);
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
+
 .buy-btn:hover {
     background-color: var(--btn-hover);
 }

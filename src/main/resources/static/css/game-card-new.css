@@ -1,0 +1,40 @@
+
+
+.card-container {
+    /*max-width: 300px;*/
+    /*background-color: darkcyan;*/
+
+    /*aspect-ratio: 1 / 1.2; !* 원하는 비율로 설정하세요, 예: 가로 1, 세로 1 *!*/
+    border: 1px blue solid;
+
+    height:25em;
+    width:20em;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    /*overflow: hidden;*/
+
+    box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+    border-radius: 0.9rem;
+
+    padding: 10px;
+
+    margin: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.card-body {
+
+}
+
+
+.hero-image {
+    width: 80%;
+    height: 50%;
+    overflow: hidden;
+}
+
+

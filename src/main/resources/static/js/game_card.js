@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
             heroImage.src = game.img_url;
             heroImage.alt = 'Game image';
 
-            const gameNameLink = clone.querySelector('main.main-content h1 a');
+            const gameNameLink = clone.querySelector('main.card-body h1 a');
             gameNameLink.textContent = game.name;
 
-            const gameDescription = clone.querySelector('main.main-content p');
+            const gameDescription = clone.querySelector('main.card-body p');
             gameDescription.textContent = game.description;
 
             // linked Detail Page

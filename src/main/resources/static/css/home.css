@@ -52,3 +52,10 @@ body {
     transform: translate(0%, -20%);
     /*border: 1px white solid;*/
 }
+
+.light{width:100px; height:150px; background:yellow; animation:light 2.5s linear; opacity:0.4;}
+@keyframes light {
+    0%, 31%, 34%, 39%, 42%, 47%, 50%, 55%, 60%, 67% {opacity: 0;}
+    5%, 30%, 35%, 38%, 43%, 46%, 51%, 54%, 68%, 100% {opacity: 0.4;}
+    70% {opacity: 0.2;}
+}

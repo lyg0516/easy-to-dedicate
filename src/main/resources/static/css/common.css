@@ -38,7 +38,7 @@ html {
     --tran-05: all 0.3s ease;
 
     /*  Margin Body - SideBar  */
-    --margin-left-side: 150px;
+    --margin-left-side: 90px;
 }
 
 body.dark{
@@ -69,4 +69,31 @@ body {
 
 .content {
     margin-left: var(--margin-left-side);
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+
+    /*height: 100%;*/
+    /*background-color: #FDBF60;*/
+}
+
+.sector {
+    /*background-color: #FE6244;*/
+    background-color: #F3B95F;
+    padding: 15px;
+    border: 1px blue solid;
+    display: grid;
+    gap: 5px;
+}
+
+.sector-header {
+    border: 1px blue solid;
+}
+
+.sector-header h2 {
+    color: white;
+}
+
+.sector-body {
+    border: 1px blue solid;
 }

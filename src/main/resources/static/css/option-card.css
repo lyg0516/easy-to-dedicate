@@ -1,4 +1,9 @@
 
+@import url('https://fonts.cdnfonts.com/css/retro-new-version');
+@import url('https://fonts.cdnfonts.com/css/retrolight');
+@import url('https://db.onlinewebfonts.com/c/4c19fc875e7ba1e6831129de3ab5ac0b?family=Retro+Gaming');
+
+
 :root {
     --dark-color-lighten: #f2f5ff;
     --red-card: #a62121;
@@ -62,7 +67,7 @@ section {
     transform: translate(0, -1.5rem);
     transition: transform 500ms ease-in-out;
     filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
-    border: 1px blue solid;
+    /*border: 1px blue solid;*/
 }
 .product-info {
     /*text-align: center;*/
@@ -94,8 +99,17 @@ section {
 }
 
 .product-info h2 {
-    font-size: 3rem;
+    /*font-family: 'Retro New Version', sans-serif;*/
+    /*font-family: 'Retrolight', sans-serif;*/
+    font-family: "Retro Gaming";
+    /*color: #18191a;*/
+    /*font-size: 3rem;*/
     font-weight: 600;
+
+    /*background: -webkit-linear-gradient(#eee, #333);*/
+    background: linear-gradient(#292931 0%, #525CEB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .product-info p {
     margin: 0.4rem;

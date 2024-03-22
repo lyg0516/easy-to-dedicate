@@ -23,10 +23,11 @@ html {
     /*--toggle-color: #DDD;*/
     /*--text-color: #707070;*/
 
-    --body-color: #F55C47;
-    --sidebar-color: #FAE6B2;
-    --primary-color: #F9880C;
-    --primary-color-light: #FAE6B2;
+    /*--body-color: #F55C47;*/
+    --body-color: #FF9843;
+    --sidebar-color: #F8F4EC;
+    --primary-color: #3468C0;
+    --primary-color-light: #86A7FC;
     --toggle-color: #DDD;
     --text-color: #707070;
 
@@ -37,7 +38,7 @@ html {
     --tran-05: all 0.3s ease;
 
     /*  Margin Body - SideBar  */
-    --margin-left-side: 150px;
+    --margin-left-side: 90px;
 }
 
 body.dark{
@@ -68,4 +69,31 @@ body {
 
 .content {
     margin-left: var(--margin-left-side);
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+
+    /*height: 100%;*/
+    /*background-color: #FDBF60;*/
+}
+
+.sector {
+    /*background-color: #FE6244;*/
+    background-color: #F3B95F;
+    padding: 15px;
+    border: 1px blue solid;
+    display: grid;
+    gap: 5px;
+}
+
+.sector-header {
+    border: 1px blue solid;
+}
+
+.sector-header h2 {
+    color: white;
+}
+
+.sector-body {
+    border: 1px blue solid;
 }

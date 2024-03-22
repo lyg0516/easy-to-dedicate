@@ -12,18 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
             heroImage.src = game.img_url;
             heroImage.alt = 'Game image';
 
-            const gameNameLink = clone.querySelector('main.main-content h1 a');
+            const gameNameLink = clone.querySelector('main.card-body h1');
             gameNameLink.textContent = game.name;
 
-            const gameDescription = clone.querySelector('main.main-content p');
+            const gameDescription = clone.querySelector('main.card-body p');
             gameDescription.textContent = game.description;
 
             // linked Detail Page
             const gamePage = String(game.name).toLowerCase();
-            const aTags = clone.querySelectorAll('a');
-            aTags.forEach(a => {
-                a.href = `games/${gamePage}`
-            })
+            const link = `games/${gamePage}`
+
+            console.log(clone.querySelector('.card-container'));
+            clone.querySelector('.card-container').addEventListener('click', function() {
+                location.href = link;
+            }, false);
 
             // clone에 있는 나머지 데이터도 마찬가지로 업데이트
 

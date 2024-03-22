@@ -31,8 +31,15 @@
 <body>
 <header th:replace="/common/fragments/header :: HeaderFragment"></header>
 <div class="content">
+    <div class="sector">
+        <div class="sector-header">
+            <h1>Support Games.</h1>
+        </div>
+        <div class="sector-body">
+            <div th:replace="/common/fragments/game-card :: GameCardFragment"></div>
+        </div>
+    </div>
 
-    <div th:replace="/common/fragments/game-card :: GameCardFragment"></div>
 </div>
 </body>
 </html>

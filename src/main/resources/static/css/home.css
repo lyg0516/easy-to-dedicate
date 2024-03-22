@@ -20,19 +20,42 @@ body {
     border: 1px blue solid;
 }
 
-.background-image {
-    background-image: url('/images/bg-2.png'); /* Update with your image path */
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.screen {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 원하는 비율로 설정하세요, 예: 가로 1, 세로 1 */
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    /*border: 1px red solid;*/
 }
 
-.dark-overlay {
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity (0.5 here) as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white; /* Set text color */
+.screen img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: 10;
+}
+
+.screen img, .screen .text-code {
+    position: absolute;
+}
+
+.screen .text-code {
+    width: 50%;
+    height: 50%;
+    /*font-size: 1rem;*/
+    font-size: 1vmin;
+    z-index: 20;
+    text-align: center;
+    transform: translate(0%, -20%);
+    /*border: 1px white solid;*/
+}
+
+.light{width:100px; height:150px; background:yellow; animation:light 2.5s linear; opacity:0.4;}
+@keyframes light {
+    0%, 31%, 34%, 39%, 42%, 47%, 50%, 55%, 60%, 67% {opacity: 0;}
+    5%, 30%, 35%, 38%, 43%, 46%, 51%, 54%, 68%, 100% {opacity: 0.4;}
+    70% {opacity: 0.2;}
 }

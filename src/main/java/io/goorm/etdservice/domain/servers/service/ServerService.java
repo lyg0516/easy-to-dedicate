@@ -62,6 +62,8 @@ public class ServerService {
         // TODO 요청 명세서 작성
         // TODO 게임 별 옵션 데이터 저장
 
+        // TODO MQ 퍼블리싱
+
         return savedServer.getId();
 
     }

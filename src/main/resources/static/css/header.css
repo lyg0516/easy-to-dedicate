@@ -3,8 +3,9 @@
 .ly-header {
     width: 100%;
     margin-left: var(--margin-left-side);
-    margin-top: 1em;
-    margin-bottom: 1em;
+    padding-left: 20px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
     /*color: var(--text-color);*/
 }
 

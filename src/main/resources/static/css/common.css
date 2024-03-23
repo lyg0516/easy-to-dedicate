@@ -77,7 +77,10 @@ body {
 
 .sector {
     /*background-color: #FE6244;*/
-    background-color: #F3B95F;
+    /*background-color: #D04848;*/
+    background-color: #3468C0;
+    background-color: #E14D2A;
+    background-color: #325288;
     padding: 15px;
     display: grid;
     gap: 5px;
@@ -85,13 +88,42 @@ body {
 }
 
 .sector-header {
-    border: 1px blue solid;
+    border-left: 0.5em white solid;
+    padding-left: 1em;
 }
 
 .sector-header h2 {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.sector-header h1 {
+    font-family: 'Poppins', sans-serif;
     color: white;
 }
 
 .sector-body {
-    border: 1px blue solid;
+    border-top: 4px white solid;
+    border-bottom: 4px white solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*border: 1px blue solid;*/
+}
+
+/* 추후 CSS 분리 */
+.support-platform {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.support-platform .logos {
+    margin-left: 3em;
+    display: flex;
+    gap: 1em;
+}
+
+.support-platform .logos i {
+    color: white;
+    font-size: 2em;
 }

@@ -79,9 +79,9 @@ body {
     /*background-color: #FE6244;*/
     background-color: #F3B95F;
     padding: 15px;
-    border: 1px blue solid;
     display: grid;
     gap: 5px;
+    box-shadow: 5px 5px;
 }
 
 .sector-header {

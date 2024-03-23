@@ -43,13 +43,13 @@ body {
 }
 
 .screen .text-code {
-    width: 50%;
-    height: 50%;
+    width: 30%;
+    height: 32%;
     /*font-size: 1rem;*/
     font-size: 1vmin;
     z-index: 20;
     text-align: center;
-    transform: translate(0%, -20%);
+    transform: translate(0%, -28%);
     /*border: 1px white solid;*/
 }
 

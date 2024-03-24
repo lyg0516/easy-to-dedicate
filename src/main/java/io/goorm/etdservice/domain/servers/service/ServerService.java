@@ -7,6 +7,7 @@ import io.goorm.etdservice.domain.members.MemberRepository;
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
 import io.goorm.etdservice.domain.servers.entity.Server;
 import io.goorm.etdservice.domain.servers.entity.ServerControl;
+import io.goorm.etdservice.domain.servers.repository.ServerControlRepository;
 import io.goorm.etdservice.domain.servers.repository.ServerRepository;
 import io.goorm.etdservice.domain.servers.types.ControlType;
 import io.goorm.etdservice.global.exception.DomainException;
@@ -23,6 +24,7 @@ import java.util.UUID;
 public class ServerService {
 
     private final ServerRepository serverRepository;
+    private final ServerControlRepository serverControlRepository;
     private final MemberRepository memberRepository;
     private final GameRepository gameRepository;
 
@@ -65,11 +67,13 @@ public class ServerService {
 
         Server savedServer = serverRepository.save(server);
 
-        ServerControl.builder()
+        ServerControl control = ServerControl.builder()
                 .server(savedServer)
                 .control(ControlType.CREATE)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
+
+        serverControlRepository.save(control);
 
         // TODO Game Deploy 게임서버 생성 요청
         // TODO 요청 명세서 작성

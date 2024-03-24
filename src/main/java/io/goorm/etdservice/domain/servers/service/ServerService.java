@@ -39,13 +39,26 @@ public class ServerService {
         // TODO 옵션 별 리소스 설정이 달라야한다. 이 부분을 인터페이스로 별도 구성하면 좋을듯
         // TODO location 은 배포될 위치에 대한 정보이다.
         // TODO 배포 위치는 클러스터 또는 나라, 지역으로 정해진다.
+
+        Integer ram = 8;
+        if (game.getName() != "Minecraft") {
+            Integer slot = dto.getSlot();
+            if (slot <= 8) {
+                ram = 8;
+            } else if (slot > 8 && slot <= 16) {
+                ram = 16;
+            } else {
+                ram = 32;
+            }
+        }
+
         Server server = Server.builder()
                 .member(member)
                 .game(game)
                 .term(dto.getTerm())
                 .cpu(4)
-                .ram(16)
-                .slot(16)
+                .ram(ram)
+                .slot(dto.getSlot())
 //                .location()
                 .days(dto.getDays())
                 .build();

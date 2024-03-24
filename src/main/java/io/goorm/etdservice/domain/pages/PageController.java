@@ -1,11 +1,17 @@
 package io.goorm.etdservice.domain.pages;
 
+import io.goorm.etdservice.domain.games.dto.GameDto;
+import io.goorm.etdservice.domain.games.service.GameService;
+import io.goorm.etdservice.global.exception.DomainException;
+import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PageController {
+
+    private GameService gameService;
 
 
     @GetMapping("/")
@@ -29,6 +35,13 @@ public class PageController {
     public String gameEnshroudedPage(Model model) {
         model.addAttribute("title","Enshrouded");
         return "pages/games/enshrouded";
+    }
+
+    @GetMapping("/games/{gameId}")
+    public String gameDetailPage(Model model, @PathParam("gameId") Long gameId) throws DomainException {
+        GameDto game = gameService.getGame(gameId);
+        model.addAttribute("title",game.getName());
+        return "pages/games/game-detail";
     }
 
 

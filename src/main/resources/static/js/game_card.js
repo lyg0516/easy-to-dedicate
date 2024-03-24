@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // linked Detail Page
             const gamePage = String(game.name).toLowerCase();
-            const link = `games/${gamePage}`
+            // const link = `games/${gamePage}`;
+            const link = `games/${game.id}`;
 
             console.log(clone.querySelector('.card-container'));
             clone.querySelector('.card-container').addEventListener('click', function() {

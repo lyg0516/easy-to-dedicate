@@ -8,7 +8,7 @@
 >
 <head>
   <link th:inline="css" th:href="@{/css/option-card.css}" rel="stylesheet"/>
-  <script type="module" defer th:src="@{/js/server_fetch.js}"></script>
+  <script type="module" defer th:src="@{/js/game_detail.js}"></script>
 </head>
 <body>
 <header th:replace="/common/fragments/header :: HeaderFragment"></header>
@@ -40,7 +40,7 @@
             <div class="price">$999</div>
           </div>
           <div class="btn">
-            <button class="buy-btn">ORDER NOW</button>
+            <button class="buy-btn" data-order-type="SMALL">ORDER NOW</button>
         </section>
         <section class="card" id="second-opt">
           <div class="product-image gamepad">
@@ -52,7 +52,7 @@
             <div class="price">$999</div>
           </div>
           <div class="btn">
-            <button class="buy-btn">ORDER NOW</button>
+            <button class="buy-btn" data-order-type="MIDDLE">ORDER NOW</button>
         </section>
         <section class="card" id="third-opt">
           <div class="product-image famicom">
@@ -64,7 +64,7 @@
             <div class="price">$999</div>
           </div>
           <div class="btn">
-            <button class="buy-btn">ORDER NOW</button>
+            <button class="buy-btn" data-order-type="MAX">ORDER NOW</button>
         </section>
         <!--      <section class="card" id="custom-opt">-->
         <!--        <div class="product-image default">-->

@@ -1,11 +1,22 @@
 package io.goorm.etdservice.domain.pages;
 
+import io.goorm.etdservice.domain.games.dto.GameDto;
+import io.goorm.etdservice.domain.games.service.GameService;
+import io.goorm.etdservice.global.exception.DomainException;
+import jakarta.websocket.server.PathParam;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class PageController {
+
+    private final GameService gameService;
 
 
     @GetMapping("/")
@@ -19,16 +30,12 @@ public class PageController {
         return "pages/games/games";
     }
 
-    @GetMapping("/games/palworld")
-    public String gamePalworldPage(Model model) {
-        model.addAttribute("title","Palworld");
-        return "pages/games/palworld";
-    }
-
-    @GetMapping("/games/enshrouded")
-    public String gameEnshroudedPage(Model model) {
-        model.addAttribute("title","Enshrouded");
-        return "pages/games/enshrouded";
+    @GetMapping("/games/{gameId}")
+    public String gameDetailPage(Model model, @PathVariable("gameId") Long gameId) throws DomainException {
+        log.info("game id : {}",gameId);
+        GameDto game = gameService.getGame(gameId);
+        model.addAttribute("title",game.getName());
+        return "pages/games/game-detail";
     }
 
 

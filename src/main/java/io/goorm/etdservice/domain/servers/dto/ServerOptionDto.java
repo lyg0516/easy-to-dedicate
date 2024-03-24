@@ -6,6 +6,7 @@ import io.goorm.etdservice.domain.servers.types.TermType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@ToString
 public class ServerOptionDto {
 
     private Long gameId;
@@ -22,20 +24,15 @@ public class ServerOptionDto {
     private String location;        // Create Location
     private Integer days = 0;       // for Activate Duration;
 
-    private LocalDateTime requestAt;
-    private LocalDateTime confirmAt;
-
 
     @Builder
-    public ServerOptionDto(Long gameId, UUID memberId, TermType term, Integer slot, String location, Integer days, LocalDateTime requestAt, LocalDateTime confirmAt) {
+    public ServerOptionDto(Long gameId, UUID memberId, TermType term, Integer slot, String location, Integer days) {
         this.gameId = gameId;
         this.memberId = memberId;
         this.term = term;
         this.slot = slot;
         this.location = location;
         this.days = days;
-        this.requestAt = requestAt;
-        this.confirmAt = confirmAt;
     }
 
 }

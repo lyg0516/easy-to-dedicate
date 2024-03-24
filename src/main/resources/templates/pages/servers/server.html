@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--<html lang="en">-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/default-layout}"
+      layout:fragment="Content"
+>
+<head>
+  <!--    <link th:inline="css" th:href="@{/css/option-card.css}" rel="stylesheet"/>-->
+  <!--    <script type="module" defer th:src="@{/js/game_detail.js}"></script>-->
+</head>
+<body>
+<header th:replace="/common/fragments/header :: HeaderFragment"></header>
+<div class="content">
+  <div class="sector">
+    <div class="sector-header">
+      <h2>User Info.</h2>
+    </div>
+    <div class="sector-body">
+
+      <div class="tabs">
+
+        <input type="radio" name="tabs" id="tabone" checked="checked">
+        <label for="tabone">First Tab</label>
+        <div class="tab">
+          <h1>First Tab Content</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <input type="radio" name="tabs" id="tabtwo">
+        <label for="tabtwo">Second Tab</label>
+        <div class="tab">
+          <h1>Second Tab Content</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <input type="radio" name="tabs" id="tabthree">
+        <label for="tabthree">Third Tab</label>
+        <div class="tab">
+          <h1>Third tab content</h1>
+          <p>hfioezhogehzioghz</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sector">
+    <div class="sector-header">
+      <h2>Servers.</h2>
+    </div>
+    <div class="sector-body">
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -38,6 +38,14 @@ public class PageController {
         return "pages/games/game-detail";
     }
 
+    //TODO Member 기능 완료 시, memberId PathVariable 추가할 것
+    //TODO 기존 members API 경로에 api 가 붙지 않아서 Path 겹침 해당 부분 수정할 것
+    @GetMapping("/member")
+    public String myPage(Model model) {
+        model.addAttribute("title","My Page");
+        return "pages/members/member";
+    }
+
 
     @GetMapping("/login-page")
     String login() {

@@ -34,6 +34,7 @@ public class GameService {
                 .name(dto.getName())
                 .description(dto.getDescription())
                 .imgUrl(dto.getImgUrl())
+                .isActive(dto.getIsActive())
                 .build();
         gameRepository.save(game);
 

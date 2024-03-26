@@ -41,8 +41,8 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
 
                         // login
-                        .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/login/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll()
 
                         // API
                         .requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
@@ -57,6 +57,7 @@ public class SecurityConfig {
 
         http
                 .oauth2Login(oauth2 -> oauth2
+                                .loginPage("/login")
                                 .userInfoEndpoint(userInfo -> userInfo
                                         .userService(oAuth2UserService)
                                 )

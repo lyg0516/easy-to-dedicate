@@ -47,9 +47,9 @@ public class PageController {
     }
 
 
-    @GetMapping("/login-page")
+    @GetMapping("/login")
     String login() {
-        return "login";
+        return "pages/login";
     }
 
     // 로그인 처리 여부

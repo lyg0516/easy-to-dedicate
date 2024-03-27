@@ -1,39 +1,37 @@
-node {
-     stage('Clone repository') {
-         checkout scm
-     }
-     stage('Build image') {
-         app = docker.build("easy-to-dedicate/service")
-         
-     }'''
-     stage('Push image') {
-         docker.withRegistry('https://ec2-34-224-5-122.compute-1.amazonaws.com/', 'harbor-reg') {
-             app.push("${env.BUILD_NUMBER}")
-             app.push("latest")
-         }
-     }'''
-}
+pipeline {
+    agent any
 
-'''
-node {
-     stage('Clone repository') {
-         checkout scm
-     }
-     
-     stage('Build image') {
-         // 이미지 빌드시 이름을 ECR 쪽으로 변경 (ECR 생성되면 **** 부분 변경 예정)
-         app = docker.build("********.dkr.ecr.ap-northeast-2.amazonaws.com/teichae")
-     }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Git 리포지토리 클론 단계
+                checkout scm
+            }
+        }
+        
+        stage('Build Image') {
+            steps {
+                // Kaniko를 사용하여 이미지 빌드 단계
+                script {
+                    def kanikoImage = 'gcr.io/kaniko-project/executor:latest'
+                    def dockerfilePath = 'Dockerfile' // root에 위치한 Dockerfile 참조
+                    def destination = "********.dkr.ecr.ap-northeast-2.amazonaws.com/teichae:${env.BUILD_NUMBER}" // 이미지 목적지를 정의합니다.
 
-     stage('Push image') {
-         sh 'rm  ~/.dockercfg || true'
-         sh 'rm ~/.docker/config.json || true'
-       
-         // ECR에서 생성한 Repository URI로 변경 및 Jenkins AWS Credential으로 변경 (ECR 생성되면 **** 부분 변경 예정)
-         docker.withRegistry('https://********.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:teichae-ecr-credentials') {
-             app.push("${env.BUILD_NUMBER}")
-             app.push("latest")
-     }
-  }
+                    sh "${kanikoImage} --context . --dockerfile ${dockerfilePath} --destination ${destination} --force"
+                }
+            }
+        }
+        
+        stage('Push Image to ECR') {
+            steps {
+                // 이미지를 ECR로 푸시하는 단계
+                script {
+                    def kanikoImage = 'gcr.io/kaniko-project/executor:latest'
+                    def destination = "********.dkr.ecr.ap-northeast-2.amazonaws.com/teichae:${env.BUILD_NUMBER}" // 이미지 목적지를 정의합니다.
+
+                    sh "${kanikoImage} --context . --dockerfile ./Dockerfile --destination ${destination} --force"
+                }
+            }
+        }
+    }
 }
-'''

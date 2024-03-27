@@ -21,7 +21,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         String token = jwtTokenUtil.generateRegisterToken(authentication);
 
         // 토큰을 쿼리 파라미터로 포함하여 리다이렉트 URL 설정
-        String redirectUrl = "?token=" + token;
+        String redirectUrl = "/?token=" + token;
 
         // 클라이언트로 리다이렉트
         response.sendRedirect(redirectUrl);

@@ -22,9 +22,9 @@ public class JwtTokenUtil {
 
     // JWT 비밀키 (임의로 설정)
     // JWT 키는 되도록이면 길고 쉽게 풀지 못하는 것으로!
-    private String REQ_SECRET = "aschnhkghgrrHRoiwoASqfo123kl1l23jlwfmnan19047ahnfgklalkwwikdrkACACjsjUIUKJBlhWAFWASFascWAfaollas";
+    private String REQ_SECRET = "aschnhkghgAWFLIHslihwfaWFHawrrHRoiwoASqfo123kl1l23jlwfmnan19047ahnfgklalkwwikdrkACACjsjUIUKJBlhWAFWASFascWAfaollas";
     // 회원가입 시, 간편로그인 인증 후 추가 정보에 접속하기 위한 토큰 - 1회성 토큰
-    private String REGISTRY_SECRET = "";
+    private String REGISTRY_SECRET = "aschnhkghgAWFLIHslihwfaWFHawrrHRoiwoASqfo123kl1l23jlwfmnan19047ahnfgklalkwwikdrkACACjsjUIUKJBlhWAFWASFascWAfaollas";;
 
     // JWT 유효 시간 설정 (30분으로 설정)
     private long ACC_EXPIR = 1800000;
@@ -88,7 +88,7 @@ public class JwtTokenUtil {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(key,SignatureAlgorithm.HS512) //or signWith(Key, SignatureAlgorithm)
+                .signWith(key,SignatureAlgorithm.HS256) //or signWith(Key, SignatureAlgorithm)
                 .compact();
     }
 

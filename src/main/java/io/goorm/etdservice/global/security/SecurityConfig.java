@@ -62,6 +62,7 @@ public class SecurityConfig {
                                         .userService(oAuth2UserService)
                                 )
                                 .successHandler(authenticationSuccessHandler)
+                                .failureUrl("/login")
 //                        .failureHandler(oAuth2AuthenticationFailureHandler)
                 );
 

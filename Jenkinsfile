@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        registry = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate'    // 개발 AWS에 생성한 ECR 주소
+        registryCredential = 'awsAccessKey'                                                // Jenkins에 셋팅한 AWS용 Credential ID
+        app = ''
+    }
+    
     stages {
         stage('Clone Repository') {
             steps {

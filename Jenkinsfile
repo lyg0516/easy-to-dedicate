@@ -8,7 +8,7 @@ node {
           stage('Clone repository') {
               checkout scm
           }
-     
+          '''
           stage('Build and Push Image') {
                steps {
                     checkout scm 
@@ -19,6 +19,6 @@ node {
                     // 이미지 빌드 및 ECR로 푸시
                     //sh "${kanikoImage} --context . --dockerfile ${dockerfilePath} --destination ${destination} --skip-tls-verify --dockerconfig ${CREDENTIAL_ID}"
              }
-          }
+          }'''
      }
 }

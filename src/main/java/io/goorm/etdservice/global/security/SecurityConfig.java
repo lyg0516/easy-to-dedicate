@@ -1,14 +1,18 @@
 package io.goorm.etdservice.global.security;
 
 
+import io.goorm.etdservice.domain.members.RoleType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -22,6 +26,7 @@ public class SecurityConfig {
 
     private final OAuth2UserServiceImpl oAuth2UserService;
     private final AuthenticationSuccessHandlerImpl authenticationSuccessHandler;
+    private final AuthenticationFilter authenticationFilter;
 
 
     @Bean
@@ -56,6 +61,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth2 -> oauth2
                                 .loginPage("/login")
                                 .userInfoEndpoint(userInfo -> userInfo
@@ -68,6 +74,18 @@ public class SecurityConfig {
 
 
         return http.build();
+    }
+
+
+    /**
+     * Role 계층화
+     * @return
+     */
+    @Bean
+    static RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+        hierarchy.setHierarchy(RoleType.ADMIN.getKey()+" > "+RoleType.USER.getKey());
+        return hierarchy;
     }
 
 

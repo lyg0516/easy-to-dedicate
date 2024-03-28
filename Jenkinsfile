@@ -8,8 +8,6 @@ node {
           checkout scm
      }
      stage('Build and Push Image') {
-          steps {
-               checkout scm 
-          }
+          checkout scm
      }
 }

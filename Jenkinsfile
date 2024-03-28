@@ -8,6 +8,9 @@ node {
           checkout scm
      }
      stage('Build and Push Image') {
+          def kanikoImage = 'gcr.io/kaniko-project/executor:latest'
+          def dockerfilePath = "Dockerfile" // 작업 공간 내의 Dockerfile을 사용
+          def destination = "${REGISTRY_URL}:${IMAGE_TAG}" // ECR 이미지 목적지0
           checkout scm
      }
 }

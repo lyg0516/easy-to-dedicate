@@ -10,5 +10,6 @@ node {
      stage('Build and Push Image') {
           steps {
                checkout scm 
+          }
      }
 }

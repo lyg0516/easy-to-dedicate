@@ -20,4 +20,5 @@ node {
                     sh "${kanikoImage} --context . --dockerfile ${dockerfilePath} --destination ${destination} --skip-tls-verify --dockerconfig ${CREDENTIAL_ID}"
             }
         }
+     }          
 }

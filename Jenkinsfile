@@ -8,6 +8,13 @@ node {
      stage('Clone repository') {
          checkout scm
      }
-
+      post {
+        success {
+            echo 'Clone step succeeded!'
+        }
+        failure {
+            echo 'Clone step failed!'
+        }
+    }
      
 }

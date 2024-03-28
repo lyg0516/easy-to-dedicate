@@ -23,29 +23,8 @@ public class JwtTokenUtil {
     // JWT 비밀키 (임의로 설정)
     // JWT 키는 되도록이면 길고 쉽게 풀지 못하는 것으로!
     private String REQ_SECRET = "aschnhkghgAWFLIHslihwfaWFHawrrHRoiwoASqfo123kl1l23jlwfmnan19047ahnfgklalkwwikdrkACACjsjUIUKJBlhWAFWASFascWAfaollas";
-    // 회원가입 시, 간편로그인 인증 후 추가 정보에 접속하기 위한 토큰 - 1회성 토큰
-    private String REGISTRY_SECRET = "aschnhkghgAWFLIHslihwfaWFHawrrHRoiwoASqfo123kl1l23jlwfmnan19047ahnfgklalkwwikdrkACACjsjUIUKJBlhWAFWASFascWAfaollas";;
 
-    // JWT 유효 시간 설정 (30분으로 설정)
-    private long ACC_EXPIR = 1800000;
-    private long REF_EXPIR = 1000 * 60 * 60 * 24 * 365;
-    private long REG_EXPIR = 1000 * 60 * 30;
-
-
-
-    // JWT 토큰 생성
-    public String generateAccessToken() {
-        Map<String, Object> claims = new HashMap<>();
-
-        return generateJWT(claims,REQ_SECRET,ACC_EXPIR);
-    }
-
-    public String generateRefreshToken() {
-        Map<String, Object> claims = new HashMap<>();
-
-        return generateJWT(claims,REQ_SECRET,REF_EXPIR);
-    }
-
+    private long EXPIRE_TIME = 1000 * 60 * 60 * 24 * 365;
 
     /**
      * 회원 가입, 간편 인증 후 추가 정보 입력 란 진행 시에 발급 되는 토큰
@@ -64,7 +43,7 @@ public class JwtTokenUtil {
         claims.put("registration_id",clientRegistrationId);
 
 
-        return generateJWT(claims, REGISTRY_SECRET, REG_EXPIR);
+        return generateJWT(claims, REQ_SECRET, EXPIRE_TIME);
 
     }
 

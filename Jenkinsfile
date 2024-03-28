@@ -4,9 +4,13 @@ node {
         CREDENTIAL_ID = 'awsAccessKey' // Jenkins에 셋팅한 AWS용 Credential ID
         IMAGE_TAG = 'latest' // 이미지 태그
     }
-
-          stage('Clone repository') {
-              checkout scm
-          }
-
+     stage('Clone repository') {
+          checkout scm
+     }
+     stage('Clone repository') {
+          checkout scm
+     }
+     stage('Clone repository') {
+          checkout scm
+     }
 }

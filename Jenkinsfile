@@ -7,10 +7,8 @@ node {
      stage('Clone repository') {
           checkout scm
      }
-     stage('Clone repository') {
-          checkout scm
-     }
-     stage('Clone repository') {
-          checkout scm
+     stage('Build and Push Image') {
+          steps {
+               checkout scm 
      }
 }

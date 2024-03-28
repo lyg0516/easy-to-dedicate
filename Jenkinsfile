@@ -12,9 +12,9 @@ node {
      stage('Build and Push Image') {
           steps {
                script {
-                    def kanikoImage = 'gcr.io/kaniko-project/executor:latest'
-                    def dockerfilePath = "Dockerfile" // 작업 공간 내의 Dockerfile을 사용
-                    def destination = "${REGISTRY_URL}:${IMAGE_TAG}" // ECR 이미지 목적지
+                    //def kanikoImage = 'gcr.io/kaniko-project/executor:latest'
+                    //def dockerfilePath = "Dockerfile" // 작업 공간 내의 Dockerfile을 사용
+                    //def destination = "${REGISTRY_URL}:${IMAGE_TAG}" // ECR 이미지 목적지
 
                     // 이미지 빌드 및 ECR로 푸시
                     //sh "${kanikoImage} --context . --dockerfile ${dockerfilePath} --destination ${destination} --skip-tls-verify --dockerconfig ${CREDENTIAL_ID}"

@@ -1,6 +1,5 @@
 pipeline {
-    agent{
-        node{
+    agent any{    
             yaml '''
 apiVersion: v1
 kind: Pod
@@ -11,7 +10,6 @@ spec:
     command: ['sleep']
     args: ['infinity']
 '''
-      }
     }
     environment {
         REGISTRY_URL = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate' // REGISTRY 주소 

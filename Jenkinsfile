@@ -1,20 +1,19 @@
-podTemplate(yaml: '''
-              kind: Pod
-              metadata:
-                name: kaniko-image-build-pod
-              spec:
-                containers:
-                - name: kaniko
-                  image: gcr.io/kaniko-project/executor:v1.6.0-debug
-                  imagePullPolicy: Always
-                  command:
-                  - sleep
-                  args:
-                  - 99d
+pipeline {
+  agent {
+    kubernetes {
+yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: kaniko
+    iamge: gcr.io/kaniko-project/executor:debug
+    command: ['sleep']
+    args: ['infinity']
 '''
-  )
-
-node {
+    }
+  }
+  
     environment {
         REGISTRY_URL = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate' // REGISTRY 주소 
         CREDENTIAL_ID = credentials('awsAccessKey') // Jenkins에 셋팅한 AWS용 Credential ID
@@ -26,27 +25,22 @@ node {
             steps {
                 script {
                     checkout scm
-                    sh 'ls -la'
+                    sh 'ls -al'
                 }
             }
         }
 
         stage('Build and Push Image') {
-            steps {
-                script {
-                    def dockerfilePath = "Dockerfile" // 작업 공간 내의 Dockerfile을 사용
-                    def destination = "${REGISTRY_URL}:${IMAGE_TAG}" // ECR 이미지 목적지
-                    
+            steps {           
                     // 이미지 빌드 및 푸시 작업 수행
                     container('kaniko') {
-                    sh "/kaniko/executor --context . \
-                        --dockerfile ${dockerfilePath} \
-                        --destination ${destination} \
-                        --skip-tls-verify \
-                        --dockerconfig ${CREDENTIAL_ID}"
+                    sh "/kaniko/executor --context=dir://${env.WORKSPACE} \
+                        --dockerfile=Dockerfile \
+                        --destination=${REGISTRY_URL}:${IMAGE_TAG} \
+                        --dockerconfig=${CREDENTIAL_ID}"
+                        //--skip-tls-verify \
                     }
                 }
-            }
         }
     }
 }

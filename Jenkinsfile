@@ -33,13 +33,7 @@ spec:
         stage('Build and Push Image') {
             steps {           
                     // 이미지 빌드 및 푸시 작업 수행
-                    container('kaniko') {
-                    sh "/kaniko/executor --context=dir://${env.WORKSPACE} \
-                        --dockerfile=Dockerfile \
-                        --destination=${REGISTRY_URL}:${IMAGE_TAG} \
-                        --dockerconfig=${CREDENTIAL_ID}"
-                        //--skip-tls-verify \
-                    }
+                    
                 }
         }
     }

@@ -1,5 +1,6 @@
 package io.goorm.etdservice.global.security;
 
+import io.goorm.etdservice.domain.members.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -39,8 +40,21 @@ public class JwtTokenUtil {
         Map<String, String> claims = new HashMap<>();
         log.info("Token name : {}",authentication.getName());
         log.info("Token regi id : {}",clientRegistrationId);
-        claims.put("subject",authentication.getName());
+        claims.put("sub",authentication.getName());
         claims.put("registration_id",clientRegistrationId);
+
+
+        return generateJWT(claims, REQ_SECRET, EXPIRE_TIME);
+
+    }
+
+    public String generateRegisterToken(Member member) {
+
+        Map<String, String> claims = new HashMap<>();
+        log.info("Token name : {}",member.getId());
+        log.info("Token regi id : {}",member.getAuth().getRegistrationId());
+        claims.put("sub",member.getId().toString());
+        claims.put("registration_id",member.getAuth().getRegistrationId());
 
 
         return generateJWT(claims, REQ_SECRET, EXPIRE_TIME);
@@ -75,6 +89,7 @@ public class JwtTokenUtil {
     // JWT 토큰으로부터 사용자 ID 추출
     public String getUserIdFromToken(String token) {
         Jws<Claims> claims = Jwts.parser().setSigningKey(REQ_SECRET).parseClaimsJws(token);
+        log.info("claims : {}",claims);
         return claims.getBody().getSubject();
     }
 

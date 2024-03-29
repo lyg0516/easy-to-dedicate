@@ -1,10 +1,11 @@
+import * as gameApi from './game_fetch.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.card-div');
     const template = document.querySelector('#card-template');
 
 
-
-    fetchGames().then(games => {
+    gameApi.getGames().then(games => {
         games.forEach(game => {
             const clone = document.importNode(template.content, true);
 

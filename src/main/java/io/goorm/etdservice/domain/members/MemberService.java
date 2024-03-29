@@ -1,13 +1,16 @@
 package io.goorm.etdservice.domain.members;
 
 
+import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import io.goorm.etdservice.global.security.OAuth2Attribute;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -29,6 +32,15 @@ public class MemberService implements UserDetailsService {
 
         return memberRepository.save(member);
 
+    }
+
+    public Member getMemberByAuthentication(Authentication authentication) throws DomainException {
+        OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+        String registrationId = oauthToken.getAuthorizedClientRegistrationId();
+        AuthType authType = AuthType.valueOfKey(registrationId);
+        String attributeId = authentication.getName();
+        return memberRepository.findMemberByAttributeIdAndAuth(attributeId, authType)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA));
     }
 
 

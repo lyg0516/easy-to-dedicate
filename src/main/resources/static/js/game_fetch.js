@@ -1,8 +1,13 @@
 import * as commApi from "./common_fetch.js";
 
 
-async function getGame(gameId) {
+export async function getGame(gameId) {
     const endpoint = `/games/${gameId}`
+    return await commApi.fetchApi(endpoint);
+}
+
+export async function getGames() {
+    const endpoint = `/games`
     return await commApi.fetchApi(endpoint);
 }
 

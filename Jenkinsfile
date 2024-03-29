@@ -1,19 +1,23 @@
-pipeline {
-    agent any{    
-            yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: kaniko
-    image: gcr.io/kaniko-project/executor:latest
-    command: ['sleep']
-    args: ['infinity']
+podTemplate(yaml: '''
+              kind: Pod
+              metadata:
+                name: kaniko-image-build-pod
+              spec:
+                containers:
+                - name: kaniko
+                  image: gcr.io/kaniko-project/executor:v1.6.0-debug
+                  imagePullPolicy: Always
+                  command:
+                  - sleep
+                  args:
+                  - 99d
 '''
-    }
+  )
+
+node {
     environment {
         REGISTRY_URL = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate' // REGISTRY 주소 
-        CREDENTIAL_ID = 'awsAccessKey' // Jenkins에 셋팅한 AWS용 Credential ID
+        CREDENTIAL_ID = credentials('awsAccessKey') // Jenkins에 셋팅한 AWS용 Credential ID
         IMAGE_TAG = 'latest' // 이미지 태그
     }
 

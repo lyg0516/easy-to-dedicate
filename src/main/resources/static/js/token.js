@@ -22,3 +22,27 @@ export function deleteToken() {
     window.localStorage.removeItem(TOKEN_KEY);
 }
 
+function decodeToken(token) {
+    const base64Payload = token.split('.')[1];
+    const base64 = base64Payload.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(
+        decodeURIComponent(
+            window
+                .atob(base64)
+                .split('')
+                .map(function (c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+        )
+    );
+}
+
+export function getUserId() {
+    const token = getToken();
+    const tokenContents = decodeToken(token);
+    console.log(tokenContents);
+    const userId = tokenContents['sub'];
+    return userId;
+}
+

@@ -32,5 +32,3 @@ export async function deleteServer(serverId) {
     const endpoint = `${PREFIX_URI}/${serverId}`;
     return await commApi.fetchApi(endpoint, 'DELETE');
 }
-
-console.log('서버 패치 관련 스크립트 파일 로드!');

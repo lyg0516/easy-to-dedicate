@@ -1,9 +1,10 @@
 import * as serverApi from "./server_fetch.js"
+import { getUserId } from "./token.js";
 
 //TODO 추후 게임 서버 옵션 API 조회하여 동적으로 생성하도록 한다.
 const OPTION_FORM = {
     game_id: 1,
-    member_id: '59b7c9ad-e6b4-46e9-92f1-5e3b326b9c4a',
+    member_id: getUserId(),
     term: 'FIXED',
     slot: 16,
     location: 'default',

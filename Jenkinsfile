@@ -29,12 +29,5 @@ spec:
                 }
             }
         }
-
-        stage('Build and Push Image') {
-            steps {           
-                    // 이미지 빌드 및 푸시 작업 수행
-                    
-                }
-        }
     }
 }

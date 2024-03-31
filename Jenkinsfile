@@ -14,6 +14,13 @@ pipeline{
                    - sleep
                    args:
                    - infinity
+                   resources:
+                     requests:
+                       memory: "250Mi"
+                       cpu: "250m"
+                     limits:
+                       memory: "400Mi"
+                       cpu: "400m"
                    volumeMounts:
                      - name: registry-credentials
                        mountPath: /kaniko/.docker

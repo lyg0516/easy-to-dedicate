@@ -5,6 +5,7 @@ import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import io.goorm.etdservice.global.security.OAuth2Attribute;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,14 @@ public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+    @SneakyThrows
+    public MemberDto getMember(UUID memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA));
+
+        return MemberDto.toDto(member);
+
+    }
     public Member upsertMemberByOAuth(OAuth2Attribute attribute) {
         String attributeId = attribute.getAttributeId();
         AuthType auth = attribute.getAuth();

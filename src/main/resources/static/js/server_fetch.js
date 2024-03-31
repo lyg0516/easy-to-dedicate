@@ -8,8 +8,16 @@ export async function getServer(serverId) {
     return await commApi.fetchApi(endpoint);
 }
 
-export async function getServers() {
-    const endpoint = PREFIX_URI
+export async function getServers(memberId) {
+    let endpoint = PREFIX_URI
+    if (memberId) {
+        const params = {
+            memberId: memberId
+        }
+        const query = new URLSearchParams(params).toString();
+        endpoint = `${endpoint}?${query}`
+    }
+    console.log(endpoint);
     return await commApi.fetchApi(endpoint);
 }
 

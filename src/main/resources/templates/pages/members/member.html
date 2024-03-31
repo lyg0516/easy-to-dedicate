@@ -7,8 +7,8 @@
       layout:fragment="Content"
 >
 <head>
-<!--    <link th:inline="css" th:href="@{/css/option-card.css}" rel="stylesheet"/>-->
-<!--    <script type="module" defer th:src="@{/js/game_detail.js}"></script>-->
+    <link th:inline="css" th:href="@{/css/member.css}" rel="stylesheet"/>
+    <script type="module" defer th:src="@{/js/member.js}"></script>
 </head>
 <body>
 <header th:replace="/common/fragments/header :: HeaderFragment"></header>
@@ -27,7 +27,26 @@
             <h2>Servers.</h2>
         </div>
         <div class="sector-body">
+            <div class="server-area">
+                <table class="server-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">GAME</th>
+                        <th scope="col">SERVER ID</th>
+                        <th scope="col">SLOT</th>
+                        <th scope="col">DAY</th>
+                        <th scope="col">CREATE</th>
+                    </tr>
+                    </thead>
+                    <tbody class="server-tbody">
+                    </tbody>
+                </table>
+                <div class="no-content">
+                    <h1> You Are Not Have Server!</h1>
+                </div>
 
+
+            </div>
         </div>
     </div>
 

@@ -13,10 +13,13 @@ import io.goorm.etdservice.domain.servers.types.ControlType;
 import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -115,10 +118,17 @@ public class ServerService {
 
     }
 
-    public void getServers(UUID memberId) throws DomainException {
+    @SneakyThrows
+    public List<ServerOptionDto> getServers(UUID memberId) {
         // TODO 관리자의 경우 전체 조회
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 유저입니다."));
+//        Member member = memberRepository.findById(memberId)
+//                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 유저입니다."));
+
+        List<Server> servers = memberId != null
+                ? serverRepository.findByMemberId(memberId)
+                : serverRepository.findAll();
+
+        return servers.stream().map(ServerOptionDto::toDto).collect(Collectors.toList());
         // TODO Pagenation 구현
     }
 

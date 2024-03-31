@@ -1,8 +1,8 @@
-pipeline{
+pipeline {
     agent {
-        kubernetes{
-            yaml '''
-               apiVersoin: v1
+        kubernetes {
+            yaml """
+               apiVersion: v1
                kind: Pod
                spec:
                  nodeSelector:
@@ -14,13 +14,6 @@ pipeline{
                    - sleep
                    args:
                    - infinity
-                   resources:
-                     requests:
-                       memory: "250Mi"
-                       cpu: "250m"
-                     limits:
-                       memory: "400Mi"
-                       cpu: "400m"
                    volumeMounts:
                      - name: registry-credentials
                        mountPath: /kaniko/.docker
@@ -31,10 +24,10 @@ pipeline{
                      items:
                      - key: .dockerconfigjson
                        path: config.json
-            '''
+            """
         }
     }
-    stages{
+    stages {
         stage('Clone repository') {
             steps {
                 script {
@@ -43,10 +36,14 @@ pipeline{
             }
         }
       
-        stage('build and push'){
-            steps{
-                container(name: 'kaniko'){
-                    sh "/kaniko/executor --dockerfile=Dockerfile --context=dir://${env.WORKSPACE} --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
+        stage('build and push') {
+            steps {
+                container(name: 'kaniko') {
+                    sh '''
+                    /kaniko/executor --dockerfile=Dockerfile \
+                    --context=dir://${env.WORKSPACE} \
+                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest
+                    '''
                 }
             }
         }

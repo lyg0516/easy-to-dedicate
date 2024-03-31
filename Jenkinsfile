@@ -32,7 +32,6 @@ pipeline{
             steps {
                 script {
                     checkout scm
-                    sh 'ls -al'
                 }
             }
         }
@@ -40,7 +39,7 @@ pipeline{
         stage('docker'){
             steps{
                 container('kaniko'){
-                    sh "executor --dockerfile=Dockerfile --context=dir://${env.WORKSPACE} --992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
+                    sh "executor --dockerfile=Dockerfile --context=dir://${env.WORKSPACE} --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
                 }
             }
         }

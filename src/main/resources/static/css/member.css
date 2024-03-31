@@ -51,10 +51,10 @@ tbody tr:hover {
 }
 
 .user-info {
-    background-color: #F9E8D9;
-    border: #E25E3E 5px solid;
-    border-radius: 5px 20px 20px 20px;
-    padding: 20px;
+    /*background-color: #F9E8D9;*/
+    /*border: #E25E3E 5px solid;*/
+    /*border-radius: 5px 20px 20px 20px;*/
+    padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -73,6 +73,7 @@ tbody tr:hover {
 
 .user-info-row label {
     width: 100%;
+    color: #325288;
     /*border: 1px blue solid;*/
 }
 .user-info-row input {
@@ -86,7 +87,7 @@ tbody tr:hover {
     /*border-bottom: 5px solid rgba(0,0,0,1);*/
     border-bottom: 5px solid #E25E3E;
     /*background: #ffa580;*/
-    background-color: #F9E8D9;
+    background-color: var(--sidebar-color);
     min-width: 250px;
     padding-left: 5px;
     outline: none;

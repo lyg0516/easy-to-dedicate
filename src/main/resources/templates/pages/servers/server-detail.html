@@ -19,17 +19,41 @@
       <h2>Server - [[${serverId}]]</h2>
     </div>
     <div class="sector-body">
-      <div>
-        <button>
-          START
-        </button>
-        <button>
-          RESTART
-        </button>
-        <button>
-          STOP
-        </button>
-      </div>
+        <div class="sector-in-box">
+            <div class="server-area">
+                <div class="server-info">
+                    <div class="server-info-row">
+                        <label>GAME</label>
+                        <input>
+                    </div>
+                    <div class="server-info-row">
+                        <label>SLOT</label>
+                        <input>
+                    </div>
+                    <div class="server-info-row">
+                        <label>DAYS</label>
+                        <input>
+                    </div>
+                    <div class="server-info-row">
+                        <label>CREATED AT</label>
+                        <input>
+                    </div>
+                </div>
+
+                <div class="server-ctl-btn">
+                    <button class="btn-3d green">
+                        START
+                    </button>
+                    <button class="btn-3d blue">
+                        RESTART
+                    </button>
+                    <button class="btn-3d red">
+                        STOP
+                    </button>
+                </div>
+            </div>
+        </div>
+
 
     </div>
   </div>
@@ -84,11 +108,7 @@
         <div class="slider"><div class="indicator"></div></div>
         <div class="tab-content">
           <section>
-<!--            <h2>Features</h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea dolorem sequi, quo tempore in eum obcaecati atque quibusdam officiis est dolorum minima deleniti ratione molestias numquam. Voluptas voluptates quibusdam cum?-->
-            <div class="game-opt-btn">
-              <button>UPDATE</button>
-              <button>INIT</button>
-            </div>
+<!--              <h3>Control, your game options</h3>-->
             <div class="game-opt-content">
               <div class="game-opt-row">
                 <label>KEY</label>
@@ -103,6 +123,10 @@
                 <input>
               </div>
             </div>
+              <div class="game-opt-btn">
+                  <button class="btn-3d blue">UPDATE</button>
+                  <button class="btn-3d red">INIT</button>
+              </div>
           </section>
           <section>
             <h2>Delivery Contents</h2>

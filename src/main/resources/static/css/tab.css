@@ -8,7 +8,8 @@
   /*left: 50%;*/
   /*transform: translateX(-50%);*/
   /*position: relative;*/
-  background: white;
+  /*background: white;*/
+  background: var(--sidebar-color);
   padding: 30px;
   padding-bottom: 20px;
   width: 100%;

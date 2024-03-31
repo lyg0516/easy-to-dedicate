@@ -1,5 +1,6 @@
 import {getServers} from "./server_fetch.js";
 import {getUserId} from "./token.js";
+import {getMember} from "./member_fetch.js";
 
 
 document.addEventListener('DOMContentLoaded',async () => {
@@ -34,11 +35,27 @@ document.addEventListener('DOMContentLoaded',async () => {
             createTd.textContent = server['created_at'];
             tr.appendChild(createTd);
 
+            tr.addEventListener('click', () => {
+                location.href = `/servers/${server['id']}`;
+            })
+
             // for (const td in tr.querySelectorAll('td')) {
             //     td.classList.add('noBorder'); // 클래스 추가, 필요에 따라 조정 가능
             // }
             serverTbody.appendChild(tr); // 완성된 행을 tbody에 추가
         });
     }
-})
+});
 
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const memberId = await getUserId();
+    const member = await getMember(memberId);
+    const rows = document.querySelectorAll('.user-info-row');
+    console.log(member);
+    rows.forEach(row => {
+        const input = row.querySelector('input');
+        const name = input.getAttribute('name');
+        input.value = member[name];
+    })
+});

@@ -21,10 +21,9 @@ public class MemberController {
     private final MemberService memberService;
     private final ServerService serverService;
 
-//    @GetMapping("/{memberId}/servers")
-//    public ResponseEntity getMemberServers(@PathVariable()UUID memberId) {
-//        MemberDto member = memberService.getMember(memberId);
-//        serverService.getServers(memberId);
-//        return ResponseEntity.ok().body();
-//    }
+    @GetMapping("/{memberId}")
+    public ResponseEntity getMember(@PathVariable() UUID memberId) {
+        MemberDto member = memberService.getMember(memberId);
+        return ResponseEntity.ok().body(member);
+    }
 }

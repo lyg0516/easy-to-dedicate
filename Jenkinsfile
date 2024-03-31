@@ -44,7 +44,7 @@ pipeline {
                     --insecure \
                     --skip-tls-verify  \
                     --cleanup \
-                    --verbosity debug
+                    --verbosity debug \
                     --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
                 }
             }

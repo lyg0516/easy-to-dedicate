@@ -1,0 +1,15 @@
+
+
+.game-opt-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.game-opt-btn button {
+    width: 100%;
+}
+
+.game-opt-content {
+    margin-top: 10px;
+}

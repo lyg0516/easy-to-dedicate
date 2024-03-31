@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +22,10 @@ public class ServerController {
 
     // 서버 조회 API
     @GetMapping("")
-    public ResponseEntity getServers(@RequestParam("memberId") UUID memberId, @RequestParam("gameId")Long gameId) {
-        return null;
+    public ResponseEntity getServers(@RequestParam(value = "memberId", required = false) UUID memberId,
+                                     @RequestParam(value = "gameId", required = false)Long gameId) {
+        List<ServerOptionDto> servers = serverService.getServers(memberId);
+        return ResponseEntity.ok().body(servers);
     }
 
     @GetMapping("/{serverId}")

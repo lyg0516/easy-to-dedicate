@@ -39,8 +39,13 @@ pipeline {
         stage('build and push') {
             steps {
                 container(name: 'kaniko') {
-                    sh"/kaniko/executor --dockerfile=Dockerfile --context=dir://${env.WORKSPACE} --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
-                    
+                    sh"/kaniko/executor --dockerfile=Dockerfile \
+                    --context=dir://${env.WORKSPACE} \
+                    --insecure \
+                    --skip-tls-verify  \
+                    --cleanup \
+                    --verbosity debug
+                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
                 }
             }
         }

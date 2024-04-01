@@ -41,11 +41,12 @@ pipeline {
                 container(name: 'kaniko') {
                     sh"/kaniko/executor --context=dir://${env.WORKSPACE} \
                     --dockerfile=Dockerfile \
-                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest \
                     --insecure \
                     --skip-tls-verify  \
                     --cleanup \
-                    --verbosity debug"
+                    --verbosity debug \
+                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
+
                 }
             }
         }

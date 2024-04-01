@@ -17,6 +17,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -91,7 +92,11 @@ public class ServerService {
     public void restartServer(UUID serverId) throws DomainException {
 
         Server server = serverRepository.findById(serverId)
-                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
+
+        //TODO 게임 옵션 데이터 조회
+        //TODO 서버 컨트롤 요청 명세 데이터화
+        //TODO MQ Publishing
 
         ServerControl.builder()
                 .server(server)
@@ -109,6 +114,9 @@ public class ServerService {
 
         Server server = serverRepository.findById(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+
+        //TODO 서버 컨트롤 요청 명세 데이터화
+        //TODO MQ Publishing
 
         ServerControl.builder()
                 .server(server)
@@ -140,6 +148,22 @@ public class ServerService {
         // TODO DTO 반환
     }
 
+    public void requestServerControl() {
 
+    }
+
+    //TODO 서버 컨트롤에 대한 요청 적용 결과
+    @SneakyThrows
+    public void updateControlResult(Long controlId) {
+        ServerControl control = serverControlRepository.findById(controlId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 요청입니다."));
+
+        //TODO 적용 완료 시점을 어디로 두어야할지 고민해보기
+        //TODO MQ 결과 타입 Enum 으로 만들기 (Deploy 와 상의)
+        //TODO MQ 처리 완료에 대한 부분을 가져올수있는지 체크
+        control.updateResult(LocalDateTime.now());
+    }
+
+    //TODO 서버 현 상태 조회 기능 추가 필요한지?
 
 }

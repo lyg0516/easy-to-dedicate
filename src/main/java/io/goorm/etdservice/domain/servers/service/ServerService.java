@@ -140,9 +140,12 @@ public class ServerService {
         // TODO Pagenation 구현
     }
 
-    public void getServer(UUID serverId) throws DomainException {
-        serverRepository.findById(serverId)
+    @SneakyThrows
+    public ServerOptionDto getServer(UUID serverId) {
+        Server server = serverRepository.findByIdFetchGame(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
+
+        return ServerOptionDto.toDto(server);
         // TODO 조회 검증: Member 가 해당 서버를 소유하고 있는게 맞는지 체크
         // TODO 관리자의 경우 패스
         // TODO DTO 반환

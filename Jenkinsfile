@@ -15,15 +15,12 @@ pipeline {
                    args:
                    - infinity
                    volumeMounts:
-                     - name: registry-credentials
+                     - name: docker-config
                        mountPath: /kaniko/.docker
                  volumes:
-                 - name: registry-credentials
-                   secret:
-                     secretName: my-reg
-                     items:
-                     - key: .dockerconfigjson
-                       path: config.json
+                   - name: docker-config
+                     configMap:
+                       name: docker-config
             '''
         }
     }
@@ -38,15 +35,8 @@ pipeline {
       
         stage('build and push') {
             steps {
-                container(name: 'kaniko') {
-                    sh"/kaniko/executor --context=dir://${env.WORKSPACE} \
-                    --dockerfile=Dockerfile \
-                    --insecure \
-                    --skip-tls-verify  \
-                    --cleanup \
-                    --verbosity debug \
-                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
-
+                container(name: 'kaniko') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
+                    sh "/kaniko/executor --context `pwd` --dockerfile=Dockerfile --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
                 }
             }
         }

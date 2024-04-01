@@ -8,25 +8,7 @@
 >
 <head>
     <th:block th:include="/common/fragments/game-card :: GameCardHead"></th:block>
-    <style>
-        .card-div {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            justify-content: start;
-        }
-        @media (max-width: 900px) {
-            .card-div {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .card-div {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/game.css}">
 </head>
 <body>
 <header th:replace="/common/fragments/header :: HeaderFragment"></header>

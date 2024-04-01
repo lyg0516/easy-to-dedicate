@@ -85,7 +85,7 @@ tbody tr:hover {
     /*margin-bottom: 3px;*/
     border: none;
     /*border-bottom: 5px solid rgba(0,0,0,1);*/
-    border-bottom: 5px solid #E25E3E;
+    border-bottom: 3px solid #E25E3E;
     /*background: #ffa580;*/
     background-color: var(--sidebar-color);
     min-width: 250px;

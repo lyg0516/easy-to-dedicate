@@ -40,8 +40,8 @@ pipeline {
             steps {
                 container(name: 'kaniko') {
                     sh"/kaniko/executor --context=dir://${env.WORKSPACE} \
-                    --destination 992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest \
                     --dockerfile=Dockerfile \
+                    --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest \
                     --insecure \
                     --skip-tls-verify  \
                     --cleanup \

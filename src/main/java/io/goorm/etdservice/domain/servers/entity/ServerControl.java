@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ServerControl extends BaseEntity {
-
+    //TODO 클래스명 고민하기!
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +34,10 @@ public class ServerControl extends BaseEntity {
         this.id = id;
         this.server = server;
         this.control = control;
+        this.appliedAt = appliedAt;
+    }
+
+    public void updateResult(LocalDateTime appliedAt) {
         this.appliedAt = appliedAt;
     }
 }

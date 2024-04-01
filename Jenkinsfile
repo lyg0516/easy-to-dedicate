@@ -36,7 +36,7 @@ pipeline {
         stage('build and push') {
             steps {
                 container(name: 'kaniko') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
-                    sh "/kaniko/executor --context `pwd` --dockerfile=Dockerfile --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
+                    sh "/kaniko/executor --context . --dockerfile=Dockerfile --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
                 }
             }
         }

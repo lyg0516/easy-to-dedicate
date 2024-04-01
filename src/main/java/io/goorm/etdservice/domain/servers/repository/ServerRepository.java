@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -16,4 +17,7 @@ public interface ServerRepository extends JpaRepository<Server, UUID> {
 
     @Query("select s from Server s join fetch s.game g where s.member.id = :memberId")
     List<Server> findByMemberId(@Param("memberId") UUID memberId);
+
+    @Query("select s from Server s join fetch s.game where s.id = :serverId")
+    Optional<Server> findByIdFetchGame(@Param("serverId") UUID serverId);
 }

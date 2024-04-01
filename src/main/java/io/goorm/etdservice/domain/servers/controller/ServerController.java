@@ -30,7 +30,8 @@ public class ServerController {
 
     @GetMapping("/{serverId}")
     public ResponseEntity getServer(@PathVariable UUID serverId) {
-        return null;
+        ServerOptionDto server = serverService.getServer(serverId);
+        return ResponseEntity.ok().body(server);
     }
 
     // 서버 컨트롤 API

@@ -9,7 +9,7 @@
 <head>
       <link th:inline="css" th:href="@{/css/tab.css}" rel="stylesheet"/>
       <link th:inline="css" th:href="@{/css/server-detail.css}" rel="stylesheet"/>
-  <!--    <script type="module" defer th:src="@{/js/game_detail.js}"></script>-->
+      <script type="module" defer th:src="@{/js/server_detail.js}"></script>
 </head>
 <body>
 <header th:replace="/common/fragments/header :: HeaderFragment"></header>
@@ -24,19 +24,19 @@
                 <div class="server-info">
                     <div class="server-info-row">
                         <label>GAME</label>
-                        <input>
+                        <input type="text" name="game" value="">
                     </div>
                     <div class="server-info-row">
                         <label>SLOT</label>
-                        <input>
+                        <input type="text" name="slot" value="">
                     </div>
                     <div class="server-info-row">
                         <label>DAYS</label>
-                        <input>
+                        <input type="text" name="days" value="">
                     </div>
                     <div class="server-info-row">
                         <label>CREATED AT</label>
-                        <input>
+                        <input type="text" name="created_at" value="">
                     </div>
                 </div>
 

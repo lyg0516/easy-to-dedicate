@@ -52,10 +52,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const memberId = await getUserId();
     const member = await getMember(memberId);
     const rows = document.querySelectorAll('.user-info-row');
-    console.log(member);
     rows.forEach(row => {
         const input = row.querySelector('input');
         const name = input.getAttribute('name');
         input.value = member[name];
-    })
+    });
 });

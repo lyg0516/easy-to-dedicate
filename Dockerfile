@@ -6,7 +6,7 @@ COPY build.gradle settings.gradle
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
 # 빌더 이미지에서 애플리케이션 빌드
-COPY . .
+COPY ./ ./
 RUN gradle build -x test --parallel
 
 # APP
@@ -14,7 +14,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # 빌더 이미지에서 jar 파일만 복사
-COPY --from=builder /app/build/libs/*.jar app.jar
+#COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 80
 # 프로필 환경변수 사용 시!

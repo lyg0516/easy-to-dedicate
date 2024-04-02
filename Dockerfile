@@ -14,7 +14,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # 빌더 이미지에서 jar 파일만 복사
-COPY --from=builder /app/build/libs/*SNAPSHOT.jar /app.jar
+COPY --from=builder /app/build/libs/*SNAPSHOT.jar app.jar
 
 EXPOSE 80
 # 프로필 환경변수 사용 시!

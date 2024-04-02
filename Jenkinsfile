@@ -41,7 +41,8 @@ pipeline {
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
                     sh '''#!/busybox/sh
-                    echo "in kaniko"
+                    echo "in kaniko" 
+                    /kaniko/executor --context . --dockerfile=Dockerfile --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest
                     '''
                 }
             }

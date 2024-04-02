@@ -17,16 +17,16 @@ public class GameDto {
     private String name;
     private String description;
     private String imgUrl;
-
+    private Boolean isActive;
 
     @Builder
-    public GameDto(Long id, String name, String description, String imgUrl) {
+    public GameDto(Long id, String name, String description, String imgUrl, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
+        this.isActive = isActive;
     }
-
 
     public static GameDto toDto(Game entity) {
         return GameDto.builder()
@@ -34,6 +34,7 @@ public class GameDto {
                 .name(entity.getName())
                 .description(entity.getDescription())
                 .imgUrl(entity.getImgUrl())
+                .isActive(entity.getIsActive())
                 .build();
     }
 

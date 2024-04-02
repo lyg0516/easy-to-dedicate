@@ -5,8 +5,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <!--공통 JS / CSS 영역을 관리하는 환경 영역-->
-<head th:replace="common/fragments/config :: ConfigFragment">
+<!--<head th:replace="common/fragments/config :: ConfigFragment">-->
+<head>
   <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Easy To Dedicate</title>
+<!--  <script src="https://kit.fontawesome.com/3b7ad45382.js" crossorigin="anonymous"></script>-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <th:block th:include="common/fragments/config :: ConfigFragment"></th:block>
   <th:block th:include="common/fragments/sidebar :: SidebarHead"></th:block>
 </head>
 
@@ -14,9 +18,6 @@
 
 <body>
 <nav th:replace="common/fragments/sidebar :: SidebarFragment"></nav>
-<!--Header 영역을 참조합니다.-->
-<!--<header th:replace="common/fragments/header :: HeaderFragment"></header>-->
-
 
 <!--Content 내용 영역을 참조합니다-->
 <th:block layout:fragment="Content"></th:block>

@@ -40,8 +40,8 @@ public class OAuth2Attribute {
 
 
     public  static OAuth2Attribute of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-
-        AuthType auth = AuthType.valueOf(registrationId);
+        System.out.println("registrationId : " + registrationId);
+        AuthType auth = AuthType.valueOfKey(registrationId);
 
         OAuth2Attribute attribute;
 

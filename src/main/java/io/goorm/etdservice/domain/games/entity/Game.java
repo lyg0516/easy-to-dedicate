@@ -28,16 +28,18 @@ public class Game extends BaseEntity {
     @Column
     private String imgUrl;
 
-
+    @Column
+    private Boolean isActive = false;
 
     //TODO 지정 옵션 목록 데이터 컬럼 만들기
     //TODO Thumbnail Image 연결 - S3 사용??
 
     @Builder
-    public Game(Long id, String name, String description, String imgUrl) {
+    public Game(Long id, String name, String description, String imgUrl, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
+        this.isActive = isActive;
     }
 }

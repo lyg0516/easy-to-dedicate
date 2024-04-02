@@ -35,6 +35,7 @@ pipeline {
         }
       
         stage('build and push') {
+            steps {
                 container(name: 'kaniko', shell: '/busybox/sh') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
                     sh '''#!/busybox/sh
                     echo "in kaniko" 
@@ -44,3 +45,4 @@ pipeline {
             }
         }
     }
+}

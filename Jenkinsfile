@@ -10,6 +10,7 @@ pipeline {
                  containers:
                  - name: kaniko
                    image: gcr.io/kaniko-project/executor:debug
+                   tty: true
                    command:
                    - sleep
                    args:
@@ -34,9 +35,14 @@ pipeline {
         }
       
         stage('build and push') {
+            environment {
+                PATH = "/busybox:/kaniko:$PATH"
+            }
             steps {
-                container(name: 'kaniko') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
-                    sh "/kaniko/executor --context . --dockerfile=Dockerfile --destination=992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate:latest"
+                container(name: 'kaniko', shell: '/busybox/sh') { //ecr repo는 테스트 후에 환경변수로 변경해 안보이게 할 예정
+                    sh '''#!/busybox/sh
+                    echo "in kaniko"
+                    '''
                 }
             }
         }

@@ -1,8 +1,4 @@
 pipeline {
-    environment {
-        ECR_REPO = credentials('ecr-repo')
-        HOST_NAME= credentials('hostname')
-    }
     agent {
         kubernetes {
             yaml '''
@@ -10,7 +6,7 @@ pipeline {
                kind: Pod
                spec:
                  nodeSelector:
-                   kubernetes.io/hostname: ${HOSTNAME}
+                   kubernetes.io/hostname: ip-10-0-1-217.ap-northeast-2.compute.internal
                  containers:
                  - name: kaniko
                    image: gcr.io/kaniko-project/executor:debug
@@ -28,6 +24,9 @@ pipeline {
                        name: docker-config
             '''
         }
+    }
+    environment {
+        ECR_REPO = credentials('ecr-repo')
     }
     stages {
         stage('Clone repository') {

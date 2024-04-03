@@ -1,10 +1,13 @@
 package io.goorm.etdservice.domain.servers.service;
 
-import io.goorm.etdservice.domain.games.entity.Game;
+import io.goorm.etdservice.domain.common.types.GameType;
+import io.goorm.etdservice.domain.games.entity.*;
 import io.goorm.etdservice.domain.games.repository.GameRepository;
 import io.goorm.etdservice.domain.members.Member;
 import io.goorm.etdservice.domain.members.MemberRepository;
+import io.goorm.etdservice.domain.servers.dto.ServerControlMessageDto;
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
+import io.goorm.etdservice.domain.servers.dto.vo.SystemData;
 import io.goorm.etdservice.domain.servers.entity.Server;
 import io.goorm.etdservice.domain.servers.entity.ServerControl;
 import io.goorm.etdservice.domain.servers.repository.ServerControlRepository;
@@ -12,6 +15,7 @@ import io.goorm.etdservice.domain.servers.repository.ServerRepository;
 import io.goorm.etdservice.domain.servers.types.ControlType;
 import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
+import io.goorm.etdservice.global.message.producer.RabbitMQProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +35,8 @@ public class ServerService {
     private final ServerControlRepository serverControlRepository;
     private final MemberRepository memberRepository;
     private final GameRepository gameRepository;
+    private final RabbitMQProducer rabbitMQProducer;
+    private final GameOptionRepository gameOptionRepository;
 
     public UUID createServer(ServerOptionDto dto) throws DomainException {
 
@@ -83,10 +89,55 @@ public class ServerService {
         // TODO 요청 명세서 작성
         // TODO 게임 별 옵션 데이터 저장
 
+        ServerControlMessageDto<?> serverControlMessageDto = null;
         // TODO MQ 퍼블리싱
+        if(server.getGame().getName().equals("Palworld")){
+            serverControlMessageDto = createInitPalworldServerOption(dto, server, control);
+        } else if(server.getGame().getName().equals("Enshrouded")){
+            serverControlMessageDto = createInitEnshroudedServerOption(dto, server, control);
+        }
 
+        rabbitMQProducer.sendMessage(serverControlMessageDto);
         return savedServer.getId();
 
+    }
+
+
+
+    private ServerControlMessageDto<?> createInitEnshroudedServerOption(ServerOptionDto dto, Server server, ServerControl control) {
+        EnshroudedOption gameOption = EnshroudedOption.initEnshroudedOption(dto.getSlot());
+        ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
+                .game(server.getGame().getName())
+                .controlType(control.getControl().name())
+                .serverId(server.getId())
+                .serverControlId(control.getId())
+                .systemData(new SystemData(server.getCpu(), server.getRam()))
+                .gameOption(gameOption)
+                .build();
+        GameOption<?> gameOptionEntity = GameOption.builder()
+                .serverID(server.getId())
+                .gameOption(gameOption)
+                .build();
+        gameOptionRepository.save(gameOptionEntity);
+        return serverControlMessageDto;
+    }
+
+    private ServerControlMessageDto<?> createInitPalworldServerOption(ServerOptionDto dto, Server server, ServerControl control) {
+        PalworldOption gameOption = PalworldOption.initPalworldOption(dto.getSlot());
+        ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
+                .game(server.getGame().getName())
+                .controlType(control.getControl().name())
+                .serverId(server.getId())
+                .serverControlId(control.getId())
+                .systemData(new SystemData(server.getCpu(), server.getRam()))
+                .gameOption(gameOption)
+                .build();
+        GameOption<?> gameOptionEntity = GameOption.builder()
+                .serverID(server.getId())
+                .gameOption(gameOption)
+                .build();
+        gameOptionRepository.save(gameOptionEntity);
+        return serverControlMessageDto;
     }
 
     public void restartServer(UUID serverId) throws DomainException {

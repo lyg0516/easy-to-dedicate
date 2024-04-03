@@ -11,7 +11,6 @@ thymeleaf:
   suffix: .html
   enabled: true
 
-
 spring:
   profiles:
     include: oauth # application-oauth.yaml ?? ??
@@ -28,6 +27,11 @@ spring:
       hibernate:
         default_batch_fetch_size: 100 # Specify the batch size 100
 
+  data:
+    mongodb:
+      host: ${MONGO_HOST} # localhost
+      port: ${MONGO_PORT} # 27017
+      database: ${MONGE_DATABASE} # mongodb
 
   rabbitmq:
     host: ${RABBITMQ_HOST}

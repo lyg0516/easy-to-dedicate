@@ -14,14 +14,14 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EnshroudedOption {
 
-    private String SERVER_NAME;// = "My Enshrouded Server"; // Optional, Name of the server
-    private String PASSWORD;// = ""; // Optional, Password for the server
-    private String SAVE_DIRECTORY;//= "./savegame"; // Optional, Save directory for the game
-    private String LOG_DIRECTORY;//= "./logs"; // Optional, Log directory for the server
-    private String SERVER_IP;//= "0.0.0.0"; // Optional, IP address for the server
-    private Integer GAME_PORT;// = 15636; // Optional, Game port for the server
-    private Integer QUERY_PORT;// = 15637; // Optional, Query port for the server
-    private Integer SLOT_COUNT;// = 16; // Optional, Number of slots for the server
+    private String SERVER_NAME = "My Enshrouded Server"; // Optional, Name of the server
+    private String PASSWORD = ""; // Optional, Password for the server
+    private String SAVE_DIRECTORY= "./savegame"; // Optional, Save directory for the game
+    private String LOG_DIRECTORY= "./logs"; // Optional, Log directory for the server
+    private String SERVER_IP= "0.0.0.0"; // Optional, IP address for the server
+    private Integer GAME_PORT = 15636; // Optional, Game port for the server
+    private Integer QUERY_PORT = 15637; // Optional, Query port for the server
+    private Integer SLOT_COUNT = 16; // Optional, Number of slots for the server
 
     @Builder
     public EnshroudedOption(String SERVER_NAME, String PASSWORD, String SAVE_DIRECTORY, String LOG_DIRECTORY, String SERVER_IP, Integer GAME_PORT, Integer QUERY_PORT, Integer SLOT_COUNT) {

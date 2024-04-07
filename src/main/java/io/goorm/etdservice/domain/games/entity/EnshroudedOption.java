@@ -9,6 +9,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.UpperSnakeCaseStrategy.class)
@@ -16,7 +17,7 @@ public class EnshroudedOption {
 
 
     private String SERVER_NAME = "My Enshrouded Server"; // Optional, Name of the server
-    private String PASSWORD = ""; // Optional, Password for the server
+    private String PASSWORD = "password"; // Optional, Password for the server
     private String SAVE_DIRECTORY= "./savegame"; // Optional, Save directory for the game
     private String LOG_DIRECTORY= "./logs"; // Optional, Log directory for the server
     private String SERVER_IP= "0.0.0.0"; // Optional, IP address for the server

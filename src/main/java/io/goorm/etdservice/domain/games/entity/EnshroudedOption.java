@@ -4,18 +4,16 @@ package io.goorm.etdservice.domain.games.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Getter
-@Setter
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
+@JsonNaming(PropertyNamingStrategies.UpperSnakeCaseStrategy.class)
 public class EnshroudedOption {
+
 
     private String SERVER_NAME = "My Enshrouded Server"; // Optional, Name of the server
     private String PASSWORD = ""; // Optional, Password for the server

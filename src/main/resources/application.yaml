@@ -32,7 +32,11 @@ spring:
       host: ${MONGO_HOST} # localhost
       port: ${MONGO_PORT} # 27017
       database: ${MONGE_DATABASE} # mongodb
+      authentication-database: admin
+      username: rootuser
+      password: rootpass
 
+    
   rabbitmq:
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}

@@ -46,8 +46,8 @@ public class OptionController {
 
     @GetMapping("/{id}")
     public ResponseEntity queryGameOption(@PathVariable UUID id) throws DomainException {
-        GameOption gameOption = optionService.queryOption(id);
-        GameOptionDto<?> gameOptionDto = new GameOptionDto(id, gameOption);
+        GameOption gameOptionEntity = optionService.queryOption(id);
+        GameOptionDto<?> gameOptionDto = new GameOptionDto(id, gameOptionEntity.getGameOption());
         return ResponseEntity.ok().body(gameOptionDto);
     }
 

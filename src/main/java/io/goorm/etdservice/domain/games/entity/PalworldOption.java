@@ -1,12 +1,17 @@
 package io.goorm.etdservice.domain.games.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonNaming(PropertyNamingStrategies.UpperSnakeCaseStrategy.class)
 public class PalworldOption {
 
     private Integer PLAYERS = 16;
@@ -181,4 +186,7 @@ public class PalworldOption {
                 .build();
     }
 
+    public PalworldOption(int player){
+        this.PLAYERS = player;
+    }
 }

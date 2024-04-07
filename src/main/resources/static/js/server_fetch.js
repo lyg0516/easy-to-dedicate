@@ -25,9 +25,10 @@ export async function createServer(option) {
     const endpoint = `${PREFIX_URI}`;
 
     //TODO 요청 후 결과 반환
-    return await commApi.fetchApi(endpoint,'POST',option);
-
+    await commApi.fetchApi(endpoint,'POST',option);
+    window.alert(`서버 생성이 완료되었습니다!`);
     //TODO 추가 로직
+
 }
 
 export async function restartServer(serverId) {

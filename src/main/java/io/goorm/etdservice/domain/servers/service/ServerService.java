@@ -105,7 +105,7 @@ public class ServerService {
 
 
     private ServerControlMessageDto<?> createInitEnshroudedServerOption(ServerOptionDto dto, Server server, ServerControl control) {
-        EnshroudedOption gameOption = EnshroudedOption.initEnshroudedOption(dto.getSlot());
+        EnshroudedOption gameOption = new EnshroudedOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .controlType(control.getControl().name())
@@ -123,7 +123,7 @@ public class ServerService {
     }
 
     private ServerControlMessageDto<?> createInitPalworldServerOption(ServerOptionDto dto, Server server, ServerControl control) {
-        PalworldOption gameOption = PalworldOption.initPalworldOption(dto.getSlot());
+        PalworldOption gameOption = new PalworldOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .controlType(control.getControl().name())

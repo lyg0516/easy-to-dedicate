@@ -2,6 +2,8 @@ package io.goorm.etdservice.domain.games.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
 public class EnshroudedOption {
 
     private String SERVER_NAME = "My Enshrouded Server"; // Optional, Name of the server
@@ -43,6 +46,10 @@ public class EnshroudedOption {
                 .QUERY_PORT(15637)
                 .SLOT_COUNT(slot)
                 .build();
+    }
+
+    public EnshroudedOption(int slot){
+        this.SLOT_COUNT = slot;
     }
 
 }

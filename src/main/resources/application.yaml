@@ -36,6 +36,7 @@ spring:
       username: rootuser
       password: rootpass
 
+    
   rabbitmq:
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}

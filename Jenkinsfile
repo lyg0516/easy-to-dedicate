@@ -6,7 +6,7 @@ pipeline {
                kind: Pod
                spec:
                  nodeSelector:
-                   kubernetes.io/hostname: ip-10-0-1-217.ap-northeast-2.compute.internal
+                   kubernetes.io/hostname: ip-10-0-1-226.ap-northeast-2.compute.internal
                  containers:
                  - name: kaniko
                    image: gcr.io/kaniko-project/executor:debug

@@ -7,6 +7,7 @@ import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.members.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,14 +35,35 @@ public class Cluster extends BaseEntity {
             = DeployType.PUBLIC;            // 공개 또는 개인
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id",
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Member member;                  // 클러스터 등록 멤버
 
     @Column()
-    private String desc;
+    private String description;
 
     @Column()
     private String externalIp;              // 클러스터 외부 접속 IP
     @Column()
     private String domain;                  // 클러스터 외부 접속 도메인
+
+    @Builder
+    public Cluster(UUID id, ApplicationType applicationType, DeployType deployType, Member member, String description, String externalIp, String domain) {
+        this.id = id;
+        this.applicationType = applicationType != null ? applicationType : this.applicationType;
+        this.deployType = deployType != null ? deployType : this.deployType;
+        this.member = member;
+        this.description = description;
+        this.externalIp = externalIp ;
+        this.domain = domain;
+    }
+
+    public void updateCluster(ClusterDto dto) {
+        this.applicationType = dto.getApplicationType();
+        this.deployType = dto.getDeployType();
+        this.description = dto.getDescription();
+        this.externalIp = dto.getExternalIp();
+        this.domain = dto.getDomain();
+    }
 
 }

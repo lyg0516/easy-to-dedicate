@@ -30,7 +30,7 @@ public class OptionService {
 
     public  GameOption queryOption(UUID id) throws DomainException {
         GameOption gameOption = gameOptionRepository.findById(id)
-                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "게임 옵션이 존재하지 않습니다."));
         return gameOption;
     }
 

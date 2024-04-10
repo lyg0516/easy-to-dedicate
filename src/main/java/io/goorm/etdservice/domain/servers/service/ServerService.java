@@ -108,7 +108,7 @@ public class ServerService {
         EnshroudedOption gameOption = new EnshroudedOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType(control.getControl().name())
+                .controlType("create")
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -126,7 +126,7 @@ public class ServerService {
         PalworldOption gameOption = new PalworldOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType(control.getControl().name())
+                .controlType("create")
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -149,13 +149,24 @@ public class ServerService {
         //TODO 서버 컨트롤 요청 명세 데이터화
         //TODO MQ Publishing
 
-        ServerControl.builder()
+        ServerControl control = ServerControl.builder()
                 .server(server)
                 .control(ControlType.RESTART)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
-
+        GameOption gameOption = gameOptionRepository.findById(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
+        ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
+                .game(server.getGame().getName())
+                .controlType("restart")
+                .serverId(server.getId())
+                .serverControlId(control.getId())
+                .systemData(new SystemData(server.getCpu(), server.getRam()))
+                .gameOption(gameOption)
+                .build();
         // TODO Game Deploy 게임서버 재시작 요청
+        rabbitMQProducer.sendMessage(serverControlMessageDto);
+
     }
 
     public void deleteServer(UUID serverId) throws DomainException {
@@ -174,7 +185,12 @@ public class ServerService {
                 .control(ControlType.STOP)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
-
+        ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
+                .game(server.getGame().getName())
+                .controlType("delete")
+                .serverId(server.getId())
+                .build();
+        rabbitMQProducer.sendMessage(serverControlMessageDto);
     }
 
     @SneakyThrows

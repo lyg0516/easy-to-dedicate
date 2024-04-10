@@ -9,6 +9,11 @@ nav.sidebar {
     font-family: 'Poppins', sans-serif;
 }
 
+.sidebar .line {
+    width: 100%;
+    border: 1px grey solid;
+}
+
 /*nav.sidebar {*/
 /*    position: fixed;*/
 /*}*/

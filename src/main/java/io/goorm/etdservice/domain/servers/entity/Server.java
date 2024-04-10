@@ -2,6 +2,7 @@ package io.goorm.etdservice.domain.servers.entity;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.goorm.etdservice.domain.cluster.Cluster;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.games.entity.Game;
 import io.goorm.etdservice.domain.members.Member;
@@ -36,8 +37,14 @@ public class Server extends BaseEntity {
     private Integer ram;                    // 할당 리소스 RAM
     @Column()
     private Integer slot;                   // 슬롯 - Player 수
-    @Column(length = 100)
-    private String location;                // 지역 또는 클러스터 정보
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cluster_id",
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private Cluster cluster;                // 서버가 속해있는 클러스터 정보
+    @Column()
+    private String host;
+    @Column()
+    private Integer port;
     @Column(length = 365)
     private Integer days;                   // 서버 활성화 기간
 
@@ -45,10 +52,7 @@ public class Server extends BaseEntity {
     //TODO 추가 파라메터들은 OneToOne 으로 분리 방향 고려할 것!
 
     @Builder
-    public Server(UUID id, Member member, Game game,
-                  TermType term,
-                  Integer cpu, Integer ram, Integer slot,
-                  String location, Integer days) {
+    public Server(UUID id, Member member, Game game, TermType term, Integer cpu, Integer ram, Integer slot, Cluster cluster, String host, Integer port, Integer days) {
         this.id = id;
         this.member = member;
         this.game = game;
@@ -56,9 +60,9 @@ public class Server extends BaseEntity {
         this.cpu = cpu;
         this.ram = ram;
         this.slot = slot;
-        this.location = location;
+        this.cluster = cluster;
+        this.host = host;
+        this.port = port;
         this.days = days;
     }
-
-
 }

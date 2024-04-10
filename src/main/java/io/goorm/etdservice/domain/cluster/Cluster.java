@@ -5,12 +5,14 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.members.Member;
+import io.goorm.etdservice.domain.servers.entity.Server;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -40,22 +42,31 @@ public class Cluster extends BaseEntity {
     private Member member;                  // 클러스터 등록 멤버
 
     @Column()
+    private String name;
+    @Enumerated(EnumType.STRING)
+    private LocationType location;
+    @Column()
     private String description;
-
     @Column()
     private String externalIp;              // 클러스터 외부 접속 IP
     @Column()
     private String domain;                  // 클러스터 외부 접속 도메인
 
+    @OneToMany(mappedBy = "cluster", fetch = FetchType.LAZY)
+    private List<Server> servers;
+
     @Builder
-    public Cluster(UUID id, ApplicationType applicationType, DeployType deployType, Member member, String description, String externalIp, String domain) {
+    public Cluster(UUID id, ApplicationType applicationType, DeployType deployType, Member member, String name, LocationType location, String description, String externalIp, String domain, List<Server> servers) {
         this.id = id;
-        this.applicationType = applicationType != null ? applicationType : this.applicationType;
-        this.deployType = deployType != null ? deployType : this.deployType;
+        this.applicationType = applicationType;
+        this.deployType = deployType;
         this.member = member;
+        this.name = name;
+        this.location = location;
         this.description = description;
-        this.externalIp = externalIp ;
+        this.externalIp = externalIp;
         this.domain = domain;
+        this.servers = servers;
     }
 
     public void updateCluster(ClusterDto dto) {

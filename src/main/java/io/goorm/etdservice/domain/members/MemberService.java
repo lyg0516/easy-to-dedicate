@@ -8,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -39,6 +41,10 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findMemberByAttributeIdAndAuth(attributeId, auth)
                 .orElseGet(() -> Member.toEntity(attribute));
 
+        if (member.getNickname() == null) {
+            member.setNickname(generateRandomNickname());
+        }
+
         return memberRepository.save(member);
 
     }
@@ -60,5 +66,22 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new UsernameNotFoundException(ErrorCode.NOT_FOUND_DATA.getDetail()));
         return UserPrincipal.create(member);
+    }
+
+
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWER = UPPER.toLowerCase();
+    private static final String DIGITS = "0123456789";
+    private static final String ALPHANUM = UPPER + LOWER + DIGITS;
+    private static final int LENGTH = 8; // 닉네임 길이를 설정할 수 있습니다.
+
+    private final Random random = new Random();
+
+    private String generateRandomNickname() {
+        StringBuilder nickname = new StringBuilder(LENGTH);
+        for (int i = 0; i < LENGTH; i++) {
+            nickname.append(ALPHANUM.charAt(random.nextInt(ALPHANUM.length())));
+        }
+        return nickname.toString();
     }
 }

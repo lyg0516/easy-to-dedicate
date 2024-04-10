@@ -1,6 +1,9 @@
 package io.goorm.etdservice.domain.games.service;
 
 
+import io.goorm.etdservice.domain.games.dto.GameDto;
+import io.goorm.etdservice.domain.games.dto.GameOptionDto;
+import io.goorm.etdservice.domain.games.entity.EnshroudedOption;
 import io.goorm.etdservice.domain.games.entity.GameOption;
 import io.goorm.etdservice.domain.games.entity.GameOptionRepository;
 import io.goorm.etdservice.domain.games.entity.PalworldOption;
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -28,6 +32,22 @@ public class OptionService {
         GameOption gameOption = gameOptionRepository.findById(id)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
         return gameOption;
+    }
+
+    public GameOptionDto resetPalworldOption(UUID serverId) throws DomainException {
+        GameOption savedGameOption = gameOptionRepository.findById(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
+        PalworldOption resetOption = new PalworldOption(((PalworldOption) savedGameOption.getGameOption()).getPLAYERS());
+        GameOption optionEntity = gameOptionRepository.save(new GameOption(serverId, resetOption));
+        return new GameOptionDto(optionEntity.getServerID(), optionEntity.getGameOption());
+    }
+
+    public GameOptionDto resetEnshroudedOption(UUID serverId) throws DomainException {
+        GameOption savedGameOption = gameOptionRepository.findById(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
+        EnshroudedOption resetOption = new EnshroudedOption(((EnshroudedOption) savedGameOption.getGameOption()).getSLOT_COUNT());
+        GameOption optionEntity = gameOptionRepository.save(new GameOption(serverId, resetOption));
+        return new GameOptionDto(optionEntity.getServerID(), optionEntity.getGameOption());
     }
 
     public void deleteOption(UUID id) {

@@ -24,19 +24,19 @@ public class ServerOptionDto {
     private UUID memberId;
     private TermType term = TermType.FIXED;     // 고정 서버 형태
     private Integer slot;            // Player Or Ram Slot
-    private String location;        // Create Location
+    private String clusterId;        // Create Location
     private Integer days = 0;       // for Activate Duration;
     private LocalDateTime createdAt;
 
     @Builder
-    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, String location, Integer days, LocalDateTime createdAt) {
+    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, String clusterId, Integer days, LocalDateTime createdAt) {
         this.id = id;
         this.gameId = gameId;
         this.game = game;
         this.memberId = memberId;
         this.term = term;
         this.slot = slot;
-        this.location = location;
+        this.clusterId = clusterId;
         this.days = days;
         this.createdAt = createdAt;
     }
@@ -47,7 +47,6 @@ public class ServerOptionDto {
                 .game(entity.getGame().getName())
                 .term(entity.getTerm())
                 .slot(entity.getSlot())
-                .location(entity.getLocation())
                 .days(entity.getDays())
                 .createdAt(entity.getCreatedAt())
                 .build();

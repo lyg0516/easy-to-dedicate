@@ -24,6 +24,18 @@ public class OptionController {
 
     private final OptionService optionService;
 
+    @PutMapping("/palworld/reset/{id}")
+    public ResponseEntity resetPalworldOption(@PathVariable UUID id) throws DomainException {
+        GameOptionDto gameOptionDto = optionService.resetPalworldOption(id);
+        return ResponseEntity.ok().body(gameOptionDto);
+    }
+
+    @PutMapping("/enshrouded/reset/{id}")
+    public ResponseEntity resetEnshroudedOption(@PathVariable UUID id) throws DomainException {
+        GameOptionDto gameOptionDto = optionService.resetEnshroudedOption(id);
+        return ResponseEntity.ok().body(gameOptionDto);
+    }
+
     @PutMapping("/palworld/{id}")
     public ResponseEntity updatePalworldOption(@PathVariable UUID id, @RequestBody() PalworldOption option) {
         GameOption<PalworldOption> palworldOptionGameOption = optionService.updateOption(id, option);
@@ -56,5 +68,7 @@ public class OptionController {
         optionService.deleteOption(id);
         return ResponseEntity.ok().body(id);
     }
+
+
 
 }

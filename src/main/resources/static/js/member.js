@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     const serverNoContent = document.querySelector('.no-content');
     if (memberId) {
         const servers = await getServers(memberId);
-        if (!servers) {
+        if (!servers || servers.length == 0) {
             return
         }
 

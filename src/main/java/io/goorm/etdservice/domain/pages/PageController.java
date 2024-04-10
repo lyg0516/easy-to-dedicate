@@ -61,4 +61,10 @@ public class PageController {
         return "pages/login";
     }
 
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        model.addAttribute("title","Admin Page");
+        return "pages/admins/admin";
+    }
+
 }

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,24 +20,27 @@ public class ClusterController {
 
     @PostMapping
     public ResponseEntity createCluster(@RequestBody ClusterDto clusterDto) {
-        return ResponseEntity.status(201).build();
+        UUID clusterId = clusterService.createCluster(clusterDto);
+        return ResponseEntity.status(201).body(clusterId);
     }
 
-    @PutMapping
-    public ResponseEntity updateCluster(@RequestBody ClusterDto clusterDto) {
+    @PutMapping("/{clusterId}")
+    public ResponseEntity updateCluster(@PathVariable("clusterId") UUID clusterId,
+                                        @RequestBody ClusterDto clusterDto) {
+        clusterService.updateCluster(clusterId, clusterDto);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public ResponseEntity getClusters() {
-        clusterService.getClusters();
-        return ResponseEntity.ok().body(null);
+        List<ClusterDto> clusters = clusterService.getClusters();
+        return ResponseEntity.ok().body(clusters);
     }
 
     @GetMapping("/{clusterId}")
     public ResponseEntity getCluster(@PathVariable("clusterId") UUID clusterId) {
-        clusterService.getCluster(clusterId);
-        return ResponseEntity.ok().body(null);
+        ClusterDto cluster = clusterService.getCluster(clusterId);
+        return ResponseEntity.ok().body(cluster);
     }
 
     @DeleteMapping("/{clusterId}")

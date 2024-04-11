@@ -20,13 +20,27 @@ public class ClusterService {
     private final ClusterRepository clusterRepository;
 
 
-    public void createCluster(ClusterDto clusterDto) {
+    public UUID createCluster(ClusterDto clusterDto) {
+        Cluster cluster = Cluster.builder()
+                .applicationType(clusterDto.getApplicationType())
+                .deployType(clusterDto.getDeployType())
+                .name(clusterDto.getName())
+                .location(clusterDto.getLocation())
+                .description(clusterDto.getDescription())
+                .externalIp(clusterDto.getExternalIp())
+                .domain(clusterDto.getDomain())
+                .build();
 
+        Cluster savedCluster = clusterRepository.save(cluster);
+        return savedCluster.getId();
     }
 
 
-    public void updateCluster(ClusterDto clusterDto) {
-
+    @SneakyThrows
+    public void updateCluster(UUID clusterId, ClusterDto clusterDto) {
+        Cluster cluster = clusterRepository.findById(clusterId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "해당 클러스터를 찾을 수 없습니다."));
+        cluster.updateCluster(clusterDto);
     }
 
     @SneakyThrows

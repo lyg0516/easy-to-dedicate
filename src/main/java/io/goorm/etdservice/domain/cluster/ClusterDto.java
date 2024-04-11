@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -21,8 +22,10 @@ public class ClusterDto {
     private String externalIp;
     private String domain;
 
+    private LocalDateTime createdAt;
+
     @Builder
-    public ClusterDto(UUID id, ApplicationType applicationType, DeployType deployType, String name, LocationType location, String description, String externalIp, String domain) {
+    public ClusterDto(UUID id, ApplicationType applicationType, DeployType deployType, String name, LocationType location, String description, String externalIp, String domain, LocalDateTime createdAt) {
         this.id = id;
         this.applicationType = applicationType;
         this.deployType = deployType;
@@ -31,6 +34,7 @@ public class ClusterDto {
         this.description = description;
         this.externalIp = externalIp;
         this.domain = domain;
+        this.createdAt = createdAt;
     }
 
 
@@ -44,6 +48,7 @@ public class ClusterDto {
                 .description(entity.getDescription())
                 .externalIp(entity.getExternalIp())
                 .domain(entity.getDomain())
+                .createdAt(entity.getCreatedAt())
                 .build();
     }
 

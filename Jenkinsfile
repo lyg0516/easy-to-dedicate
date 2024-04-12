@@ -28,7 +28,7 @@ pipeline {
     }
     environment {
         //ECR_REPO = credentials('ecr-repo')
-        ECR_REPO = 992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate
+        ECR_REPO = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate'
     }
     stages {
         stage('Clone repository') {

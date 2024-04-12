@@ -47,7 +47,12 @@ pipeline {
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     sh '''#!/busybox/sh
                     echo "in kaniko" 
-                    /kaniko/executor --context `pwd` --dockerfile Dockerfile --verbosity debug --destination=${ECR_REPO}:latest
+                    /kaniko/executor --context `pwd` \
+                    --dockerfile Dockerfile \
+                    --verbosity debug \
+                    --destination=${ECR_REPO}:latest \
+                    --insecure \
+                    --skip-tls-verify
                     '''
                 }
             }

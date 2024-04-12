@@ -16,12 +16,17 @@ pipeline {
                    args:
                    - infinity
                    volumeMounts:
-                     - name: docker-config
+                     - name: jenkins-docker-cfg
                        mountPath: /kaniko/.docker
                  volumes:
-                   - name: docker-config
-                     configMap:
-                       name: docker-config
+                 - name: jenkins-docker-cfg
+                   projected:
+                     sources:
+                     - secret:
+                       name: docker-credentials
+                       items:
+                         - key: .dockerconfigjson
+                           path: config.json
             '''
         }
     }

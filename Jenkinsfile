@@ -21,7 +21,7 @@ pipeline {
                  volumes:
                    - name: docker-config
                      configMap:
-                       name: regcred
+                       name: docker-config
             '''
         }
     }

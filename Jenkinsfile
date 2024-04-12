@@ -16,17 +16,12 @@ pipeline {
                    args:
                    - infinity
                    volumeMounts:
-                     - name: jenkins-docker-cfg
+                     - name: docker-config
                        mountPath: /kaniko/.docker
                  volumes:
-                 - name: jenkins-docker-cfg
-                   projected:
-                     sources:
-                     - secret:
+                   - name: docker-config
+                     configMap:
                        name: regcred
-                       items:
-                         - key: .dockerconfigjson
-                           path: config.json
             '''
         }
     }
@@ -50,9 +45,7 @@ pipeline {
                     /kaniko/executor --context `pwd` \
                     --dockerfile Dockerfile \
                     --verbosity debug \
-                    --destination=${ECR_REPO}:latest \
-                    --insecure \
-                    --skip-tls-verify
+                    --destination=${ECR_REPO}:latest
                     '''
                 }
             }

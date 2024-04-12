@@ -16,12 +16,13 @@ pipeline {
                    args:
                    - infinity
                    volumeMounts:
-                     - name: docker-config
-                       mountPath: /kaniko/.docker
+                     - name: aws-secret
+                       mountPath: /kaniko/.aws
+                 restartPolicy: Never
                  volumes:
-                   - name: docker-config
-                     configMap:
-                       name: docker-config
+                   - name: aws-secret
+                     secret:
+                       secretName: aws-secret
             '''
         }
     }

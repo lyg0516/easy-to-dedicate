@@ -40,6 +40,9 @@ function decodeToken(token) {
 
 export function getUserId() {
     const token = getToken();
+    if (!token) {
+        return null;
+    }
     const tokenContents = decodeToken(token);
     const userId = tokenContents['sub'];
     return userId;

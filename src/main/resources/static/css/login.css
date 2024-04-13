@@ -22,20 +22,22 @@ body {
 
 .login-header {
     margin: 5em 0 5em 0;
-    font-family: "Retro Gaming";
+    /*font-family: "Retro Gaming";*/
+    font-family: "Press Start 2P";
     text-align: center;
     color: white;
 }
 
 .login-header h1 {
-    font-size: 7rem;
+    font-size: 6rem;
 }
 
 .login-body p {
-    font-family: "Retro Gaming";
+    /*font-family: "Retro Gaming";*/
+    font-family: "Press Start 2P";
     text-align: center;
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .login-btn-box {

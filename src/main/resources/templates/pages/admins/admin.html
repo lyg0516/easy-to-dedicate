@@ -71,34 +71,43 @@
         <div class="window__body">
             <div class="window__row">
                 <label>Cluster Name</label>
-                <input>
+                <input name="name">
             </div>
             <div class="window__row">
                 <label>Application Type</label>
-                <input>
+                <select id="application-select" name="application_type">
+                    <option value="KUBERNETES" selected>KUBERNETES</option>
+                    <option value="DOCKER">DOCKER</option>
+                </select>
             </div>
             <div class="window__row">
                 <label>Deploy Type</label>
-                <input>
+                <select id="deploy-select" name="deploy_type">
+                    <option value="PUBLIC" selected>PUBLIC</option>
+                    <option value="PRIVATE">PRIVATE</option>
+                </select>
+
             </div>
             <div class="window__row">
                 <label>Location</label>
-                <input>
+                <select id="location-select" name="location">
+                    <option value="KR" selected>KR</option>
+                </select>
             </div>
             <div class="window__row">
                 <label>Description</label>
-                <input>
+                <input name="description">
             </div>
             <div class="window__row">
                 <label>External Ip</label>
-                <input>
+                <input name="external_ip">
             </div>
             <div class="window__row">
                 <label>Domain</label>
-                <input>
+                <input name="domain">
             </div>
             <div class="window__func">
-                <button class="btn-3d red">Add Cluster</button>
+                <button class="btn-3d red" id="create-cluster-btn">Add Cluster</button>
             </div>
         </div>
 

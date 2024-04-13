@@ -16,10 +16,6 @@
 /*    object-fit:cover;*/
 /*}*/
 
-body {
-    border: 1px blue solid;
-}
-
 .screen {
     width: 100%;
     aspect-ratio: 16 / 9; /* 원하는 비율로 설정하세요, 예: 가로 1, 세로 1 */

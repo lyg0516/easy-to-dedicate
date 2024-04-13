@@ -20,6 +20,7 @@ public class ClusterController {
 
     @PostMapping
     public ResponseEntity createCluster(@RequestBody ClusterDto clusterDto) {
+        log.info("생성 요청 들어옴!");
         UUID clusterId = clusterService.createCluster(clusterDto);
         return ResponseEntity.status(201).body(clusterId);
     }

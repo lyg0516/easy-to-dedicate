@@ -143,7 +143,7 @@ public class ServerService {
     @SneakyThrows
     public void restartServer(UUID serverId) {
 
-        Server server = serverRepository.findById(serverId)
+        Server server = serverRepository.findByIdFetchGame(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
 
         //TODO 게임 옵션 데이터 조회
@@ -176,7 +176,7 @@ public class ServerService {
         // TODO 삭제는 게임 서버 유지 기간 체크 후 자동 삭제를 기본으로 한다.
         // TODO API 존재 이유는 환불, 기타 문제에 대처하기 위한 API 이다.
 
-        Server server = serverRepository.findById(serverId)
+        Server server = serverRepository.findByIdFetchGame(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
 
         //TODO 서버 컨트롤 요청 명세 데이터화

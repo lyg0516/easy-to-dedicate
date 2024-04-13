@@ -48,12 +48,14 @@ public class ServerController {
     public ResponseEntity restartServer(@PathVariable UUID serverId) {
         // TODO 재시작에 파트
         // TODO 요청 성공 여부만 전달.
+        serverService.restartServer(serverId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{serverId}")
     public ResponseEntity deleteServer(@PathVariable UUID serverId) {
         // TODO 삭제 로직
+        serverService.deleteServer(serverId);
         return ResponseEntity.noContent().build();
     }
 

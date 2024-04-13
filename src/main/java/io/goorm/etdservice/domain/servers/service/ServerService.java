@@ -140,7 +140,8 @@ public class ServerService {
         return serverControlMessageDto;
     }
 
-    public void restartServer(UUID serverId) throws DomainException {
+    @SneakyThrows
+    public void restartServer(UUID serverId) {
 
         Server server = serverRepository.findById(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
@@ -169,7 +170,8 @@ public class ServerService {
 
     }
 
-    public void deleteServer(UUID serverId) throws DomainException {
+    @SneakyThrows
+    public void deleteServer(UUID serverId) {
         // TODO Game Deploy 게임서버 삭제 요청
         // TODO 삭제는 게임 서버 유지 기간 체크 후 자동 삭제를 기본으로 한다.
         // TODO API 존재 이유는 환불, 기타 문제에 대처하기 위한 API 이다.

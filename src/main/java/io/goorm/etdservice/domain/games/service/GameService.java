@@ -3,9 +3,11 @@ package io.goorm.etdservice.domain.games.service;
 import io.goorm.etdservice.domain.games.dto.GameDto;
 import io.goorm.etdservice.domain.games.entity.Game;
 import io.goorm.etdservice.domain.games.repository.GameRepository;
+import io.goorm.etdservice.domain.members.Member;
 import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class GameService {
     private final GameRepository gameRepository;
 
     public List<GameDto> getGames() {
-        List<Game> games = gameRepository.findAll();
+        List<Game> games = gameRepository.findAll(Sort.by(Sort.Direction.DESC,"isActive"));
         return games.stream().map(GameDto::toDto).collect(Collectors.toList());
     }
 

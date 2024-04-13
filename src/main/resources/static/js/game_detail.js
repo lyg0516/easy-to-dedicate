@@ -1,5 +1,5 @@
 import * as serverApi from "./server_fetch.js"
-import { getUserId } from "./token.js";
+import {getToken, getUserId} from "./token.js";
 
 //TODO 추후 게임 서버 옵션 API 조회하여 동적으로 생성하도록 한다.
 const OPTION_FORM = {
@@ -23,9 +23,15 @@ document.querySelectorAll('.buy-btn').forEach(btn => {
         const orderType = btn.dataset.orderType;
         console.log(`order type : ${orderType}`);
 
-        const option = createOption(orderType);
+        if (getUserId()) {
+            const option = createOption(orderType);
+            await serverApi.createServer(option);
+        } else {
+            window.alert('로그인이 필요한 서비스입니다!');
+            location.href = '/login';
+        }
 
-        await serverApi.createServer(option);
+
     })
 })
 

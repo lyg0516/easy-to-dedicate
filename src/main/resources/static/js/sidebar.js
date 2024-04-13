@@ -1,4 +1,4 @@
-import {getToken, deleteToken} from "./token.js";
+import {getToken, deleteToken, getRole} from "./token.js";
 
 
 const body = document.querySelector('body'),
@@ -17,11 +17,25 @@ document.addEventListener("DOMContentLoaded", function() {
         sidebar.classList.toggle("close");
     });
 
+    const admins = document.querySelectorAll('.admin');
     if(getToken()) {
         loginBtn.style.display = 'none';
+
+        const role = getRole();
+
+        if (role !== 'ADMIN') {
+            admins.forEach((el) => {
+                el.style.display = 'none';
+            });
+        }
+
     }else {
         logoutBtn.style.display = 'none';
         mypageBtn.style.display = 'none';
+
+        admins.forEach((el) => {
+            el.style.display = 'none';
+        });
     }
 
 

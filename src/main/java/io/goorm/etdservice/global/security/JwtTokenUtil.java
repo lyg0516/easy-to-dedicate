@@ -55,6 +55,7 @@ public class JwtTokenUtil {
         log.info("Token regi id : {}",member.getAuth().getRegistrationId());
         claims.put("sub",member.getId().toString());
         claims.put("registration_id",member.getAuth().getRegistrationId());
+        claims.put("role",member.getRole().toString());
 
 
         return generateJWT(claims, REQ_SECRET, EXPIRE_TIME);

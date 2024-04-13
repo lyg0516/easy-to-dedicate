@@ -1,7 +1,6 @@
 
 .card-container {
     /*max-width: 300px;*/
-    background-color: #3B3486;
     background-color: #222831;
     color: white;
 
@@ -26,6 +25,15 @@
 
     cursor: pointer;
 
+}
+
+
+.card-container.inactive {
+    background-color: #222831;
+}
+
+.card-container.active {
+    background-color: #FB6D48;
 }
 
 

@@ -46,13 +46,15 @@
     min-width: 50%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
 }
 
 .server-info .server-info-row {
     display: flex;
-    font-size: 1em;
+    font-size: 2rem;
     justify-content: space-around;
+    font-weight: 700;
 }
 .server-info .server-info-row * {
     width: 100%;
@@ -60,10 +62,16 @@
 
 .server-info label {
     margin: 5px 10px;
+    color: #325288;
 }
 
 .server-info input {
     margin: 5px 0px;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #E25E3E;
+    background-color: var(--sidebar-color);
+    color: rgba(0,0,0,1);
 }
 
 

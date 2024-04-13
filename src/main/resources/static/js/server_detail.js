@@ -1,4 +1,4 @@
-import {getServer} from "./server_fetch.js";
+import {deleteServer, getServer, restartServer} from "./server_fetch.js";
 import {getOption, updateOption} from "./option_fetch.js";
 
 const path = window.location.pathname;
@@ -49,6 +49,20 @@ document.querySelector('#game-opt-update')
         window.alert('게임 옵션 업데이트 완료!');
 });
 
+/**
+ * 서버 컨트롤 버튼 매핑
+ */
+document.querySelector('#start-btn').addEventListener('click', () => {
+    window.alert("흐음....")
+});
+document.querySelector('#restart-btn').addEventListener('click', async () => {
+    await restartServer(serverId);
+    window.alert('재시작 요청 완료');
+});
+document.querySelector('#delete-btn').addEventListener('click', async () => {
+    await deleteServer(serverId);
+    window.alert('삭제 요청 완료');
+});
 
 
 function updateOptionUI(options) {

@@ -1,8 +1,8 @@
 /* Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.cdnfonts.com/css/retro-new-version');
-@import url('https://fonts.cdnfonts.com/css/retrolight');
-@import url('https://db.onlinewebfonts.com/c/4c19fc875e7ba1e6831129de3ab5ac0b?family=Retro+Gaming');
+/*@import url('https://fonts.cdnfonts.com/css/retro-new-version');*/
+/*@import url('https://fonts.cdnfonts.com/css/retrolight');*/
+/*@import url('https://db.onlinewebfonts.com/c/4c19fc875e7ba1e6831129de3ab5ac0b?family=Retro+Gaming');*/
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 /*@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');*/
 
@@ -307,7 +307,7 @@ body {
 
 
 .table-area {
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     width: 100%;
     color: #D2D1D5;
 }

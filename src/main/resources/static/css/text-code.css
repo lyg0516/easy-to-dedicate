@@ -13,9 +13,9 @@ div.text-code {
   font-family: monospace;
 }
 
-div.text-code h1 {
-  margin-top: 0;
-}
+/*div.text-code h1 {*/
+/*  margin-top: 0;*/
+/*}*/
 
 div.text-code button {
   font-family: monospace;
@@ -31,11 +31,16 @@ div.text-code button {
 }
 
 div.text-code article {
-  font-family: "Retro Gaming";
+  /*font-family: "Retro Gaming";*/
+  font-family: "Press Start 2P";
   width: 80%;
   margin: auto;
   font-size: 2em;
   top: 50%;
   position: relative;
   transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -1,7 +1,7 @@
 import * as gameApi from './game_fetch.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.card-div');
+    const cardDiv = document.querySelector('.card-div');
     const template = document.querySelector('#card-template');
 
 
@@ -20,18 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
             gameDescription.textContent = game.description;
 
             // linked Detail Page
-            const gamePage = String(game.name).toLowerCase();
-            // const link = `games/${gamePage}`;
             const link = `games/${game.id}`;
 
-            console.log(clone.querySelector('.card-container'));
             clone.querySelector('.card-container').addEventListener('click', function() {
-                location.href = link;
+                if (game.is_active === true) {
+                    location.href = link;
+                } else {
+                    window.alert("현재 미 지원 게임입니다!");
+                }
             }, false);
 
-            // clone에 있는 나머지 데이터도 마찬가지로 업데이트
+            const cardContainer = clone.querySelector('.card-container');
+            if (game.is_active === true) {
+                cardContainer.classList.add('active');
+            } else {
+                cardContainer.classList.add('inactive');
+            }
 
-            container.appendChild(clone);
+            cardDiv.appendChild(clone);
         });
     })
 });

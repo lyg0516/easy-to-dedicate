@@ -41,8 +41,14 @@ function decodeToken(token) {
 export function getUserId() {
     const token = getToken();
     const tokenContents = decodeToken(token);
-    console.log(tokenContents);
     const userId = tokenContents['sub'];
     return userId;
+}
+
+export function getRole() {
+    const token = getToken();
+    const tokenContents = decodeToken(token);
+    const role = tokenContents['role'];
+    return role;
 }
 

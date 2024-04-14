@@ -7,6 +7,8 @@ import io.goorm.etdservice.domain.games.entity.EnshroudedOption;
 import io.goorm.etdservice.domain.games.entity.GameOption;
 import io.goorm.etdservice.domain.games.entity.GameOptionRepository;
 import io.goorm.etdservice.domain.games.entity.PalworldOption;
+import io.goorm.etdservice.domain.servers.entity.Server;
+import io.goorm.etdservice.domain.servers.repository.ServerRepository;
 import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import java.util.UUID;
 public class OptionService {
 
     private final GameOptionRepository gameOptionRepository;
+    private final ServerRepository serverRepository;
 
     public <T> GameOption<T> updateOption(UUID id, T option){
         return gameOptionRepository.save(new GameOption(id, option));
@@ -34,20 +37,26 @@ public class OptionService {
         return gameOption;
     }
 
-    public GameOptionDto resetPalworldOption(UUID serverId) throws DomainException {
-        GameOption savedGameOption = gameOptionRepository.findById(serverId)
-                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
-        PalworldOption resetOption = new PalworldOption(((PalworldOption) savedGameOption.getGameOption()).getPLAYERS());
-        GameOption optionEntity = gameOptionRepository.save(new GameOption(serverId, resetOption));
-        return new GameOptionDto(optionEntity.getServerID(), optionEntity.getGameOption());
-    }
-
-    public GameOptionDto resetEnshroudedOption(UUID serverId) throws DomainException {
-        GameOption savedGameOption = gameOptionRepository.findById(serverId)
-                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임서버입니다."));
-        EnshroudedOption resetOption = new EnshroudedOption(((EnshroudedOption) savedGameOption.getGameOption()).getSLOT_COUNT());
-        GameOption optionEntity = gameOptionRepository.save(new GameOption(serverId, resetOption));
-        return new GameOptionDto(optionEntity.getServerID(), optionEntity.getGameOption());
+    public GameOption resetOption(UUID id) throws DomainException {
+        Server server = serverRepository.findById(id)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "유효하지 않는 서버 ID 입니다."));
+        GameOption gameOption = gameOptionRepository.findById(id)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "유효하지 않는 서버 ID 입니다."));
+        String gameName = server.getGame().getName();
+        GameOption saveOption = null;
+        if(gameName == "Palworld"){
+            PalworldOption palworldOption = (PalworldOption) gameOption.getGameOption();
+            saveOption = gameOptionRepository.save(new GameOption(
+                    id, new GameOption(id, new PalworldOption(palworldOption.getPLAYERS())
+            )));
+        }
+        else if(gameName == "Enshrouded"){
+            EnshroudedOption enshroudedOption = (EnshroudedOption) gameOption.getGameOption();
+            saveOption = gameOptionRepository.save(new GameOption(
+                    id, new GameOption(id, new EnshroudedOption(enshroudedOption.getSLOT_COUNT())
+            )));
+        }
+        return saveOption;
     }
 
     public void deleteOption(UUID id) {

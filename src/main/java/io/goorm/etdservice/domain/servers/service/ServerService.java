@@ -108,7 +108,8 @@ public class ServerService {
         EnshroudedOption gameOption = new EnshroudedOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType("create")
+                .containerImage("sknnr/enshrouded-dedicated-server:v2.0.5")
+                .controlType(ControlType.CREATE.label())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -126,7 +127,8 @@ public class ServerService {
         PalworldOption gameOption = new PalworldOption(dto.getSlot());
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType("create")
+                .containerImage("thijsvanloef/palworld-server-docker:latest")
+                .controlType(ControlType.CREATE.label())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -159,7 +161,7 @@ public class ServerService {
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType("restart")
+                .controlType(ControlType.RESTART.label())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -189,7 +191,7 @@ public class ServerService {
                 .build();
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType("delete")
+                .controlType(ControlType.DELETE.label())
                 .serverId(server.getId())
                 .build();
         rabbitMQProducer.sendMessage(serverControlMessageDto);

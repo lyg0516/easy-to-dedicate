@@ -17,7 +17,7 @@ pipeline {
                    - infinity
                    volumeMounts:
                      - name: aws-secret
-                       mountPath: /kaniko/.aws
+                       mountPath: /root/.aws
                  restartPolicy: Never
                  volumes:
                    - name: aws-secret
@@ -27,8 +27,7 @@ pipeline {
         }
     }
     environment {
-        //ECR_REPO = credentials('ecr-repo')
-        ECR_REPO = '992382830946.dkr.ecr.ap-northeast-2.amazonaws.com/easy-to-dedicate'
+        ECR_REPO = credentials('ecr-repo')
     }
     stages {
         stage('Clone repository') {

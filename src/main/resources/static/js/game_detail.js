@@ -1,5 +1,6 @@
 import * as serverApi from "./server_fetch.js"
 import {getToken, getUserId} from "./token.js";
+import {getClusters} from "./cluster_fetch.js";
 
 //TODO 추후 게임 서버 옵션 API 조회하여 동적으로 생성하도록 한다.
 const OPTION_FORM = {
@@ -7,7 +8,7 @@ const OPTION_FORM = {
     member_id: getUserId(),
     term: 'FIXED',
     slot: 16,
-    location: 'default',
+    cluster_id: null,
     days: 30,
 }
 
@@ -46,6 +47,7 @@ function createOption(type, option) {
     // OPTION_FORM 매핑
     let requestOption = Object.assign(OPTION_FORM);
     requestOption.game_id = gameId;
+    requestOption.cluster_id = getSelectedCluster();
     switch (type) {
         case 'SMALL':
             requestOption.slot = 4;
@@ -64,4 +66,25 @@ function createOption(type, option) {
     }
 
     return requestOption;
+}
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const select = document.querySelector('#cluster-selector');
+    const clusters = await getClusters();
+
+    clusters.forEach(cluster => {
+        const option = document.createElement('option');
+        option.value = cluster.id;
+        const location = cluster.location.toLowerCase();
+        option.style.backgroundImage = `url(/images/location/${location}.png)`
+        option.innerHTML = `${cluster.location} - ${cluster.name}`;
+        select.appendChild(option);
+    });
+
+});
+
+function getSelectedCluster() {
+    const selectedOption = document.querySelector('#cluster-selector option:checked');
+    return selectedOption.value;
 }

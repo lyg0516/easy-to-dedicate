@@ -140,6 +140,14 @@ body {
     font-size: 2em;
 }
 
+.header-side {
+    display: flex;
+}
+.header-side * {
+    width: 100%;
+    /*background-color: inherit;*/
+}
+
 
 /* 3D Button */
 .btn-3d {

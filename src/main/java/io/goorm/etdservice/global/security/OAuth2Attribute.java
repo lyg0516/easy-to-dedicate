@@ -76,13 +76,22 @@ public class OAuth2Attribute {
         // 카카오의 프로필 정보 추출
         Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
 
+        String nickname = profile.get("nickname") != null
+                ? String.valueOf(profile.get("nickname"))
+                : null;
+        String profileImage = profile.get("profile_image_url") != null
+                ? String.valueOf(profile.get("profile_image_url"))
+                : null;
+
+
+
         return OAuth2Attribute.builder()
                 .attributes(attributes)
                 .attributeId(String.valueOf(attributes.get(userNameAttributeName)))
                 .nameAttributeKey(userNameAttributeName)
-                .name((String) profile.get("nickname"))
-                .email((String) kakaoAccount.get("email"))
-                .picture((String) profile.get("profile_image_url"))
+                .name(nickname)
+//                .email((String) kakaoAccount.get("email"))    // 권한을 부여받을수 없음 (비지니스 만!)
+                .picture(profileImage)
                 .registrationId(AuthType.KAKAO.getRegistrationId())
                 .auth(AuthType.KAKAO)
                 .build();

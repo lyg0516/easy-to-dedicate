@@ -24,12 +24,12 @@ public class ServerOptionDto {
     private UUID memberId;
     private TermType term = TermType.FIXED;     // 고정 서버 형태
     private Integer slot;            // Player Or Ram Slot
-    private String clusterId;        // Create Location
+    private UUID clusterId;        // Create Location
     private Integer days = 0;       // for Activate Duration;
     private LocalDateTime createdAt;
 
     @Builder
-    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, String clusterId, Integer days, LocalDateTime createdAt) {
+    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, UUID clusterId, Integer days, LocalDateTime createdAt) {
         this.id = id;
         this.gameId = gameId;
         this.game = game;

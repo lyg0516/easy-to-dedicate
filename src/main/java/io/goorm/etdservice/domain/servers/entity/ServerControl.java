@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.servers.types.ControlType;
+import io.goorm.etdservice.domain.servers.types.ProgressType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -26,16 +27,25 @@ public class ServerControl extends BaseEntity {
     private Server server;              // 요청된 서버
     @Enumerated(EnumType.STRING)
     private ControlType control;        // 컨트롤 타입, CREATE, RESTART, STOP
-    @Column
+    @Enumerated(EnumType.STRING)
+    private ProgressType progress = ProgressType.RECEIVE;
+    @Column()
+    private String resultMessage;
+    @Column()
     private LocalDateTime appliedAt;    // 적용된 시간
 
     @Builder
-    public ServerControl(Long id, Server server, ControlType control, LocalDateTime appliedAt) {
+    public ServerControl(Long id, Server server,
+                         ControlType control, ProgressType progress, String resultMessage,
+                         LocalDateTime appliedAt) {
         this.id = id;
         this.server = server;
         this.control = control;
+        this.progress = progress;
+        this.resultMessage = resultMessage;
         this.appliedAt = appliedAt;
     }
+
 
     public void updateResult(LocalDateTime appliedAt) {
         this.appliedAt = appliedAt;

@@ -11,7 +11,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ServerControlMessageDto<T> {
-    //TODO 메시지 포맷 변경
+
     private String game;
     private String controlType;
     private UUID serverId;

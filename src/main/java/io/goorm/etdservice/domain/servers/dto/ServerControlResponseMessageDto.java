@@ -12,16 +12,21 @@ import java.util.UUID;
 @Getter
 public class ServerControlResponseMessageDto {
 
-    private  String type;
+    private String type;
     private UUID serverId;
+    private String status;
     private Long serverControlId;
-    private String ipPort;
+    private String host;
+    private Integer port;
 
     @Builder
-    public ServerControlResponseMessageDto(String type, UUID serverId, Long serverControlId, String ipPort) {
+
+    public ServerControlResponseMessageDto(String type, UUID serverId, String status, Long serverControlId, String host, Integer port) {
         this.type = type;
         this.serverId = serverId;
+        this.status = status;
         this.serverControlId = serverControlId;
-        this.ipPort = ipPort;
+        this.host = host;
+        this.port = port;
     }
 }

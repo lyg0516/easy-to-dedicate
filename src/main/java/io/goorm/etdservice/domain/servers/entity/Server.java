@@ -65,4 +65,9 @@ public class Server extends BaseEntity {
         this.port = port;
         this.days = days;
     }
+
+    public void setServerHost(String host, Integer port){
+        this.host = host;
+        this.port = port;
+    }
 }

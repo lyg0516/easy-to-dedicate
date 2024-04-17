@@ -42,8 +42,8 @@ spring:
     port: ${RABBITMQ_PORT}
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
-    ssl:
-      enabled: true
+    # ssl:
+    #   enabled: true
 #    produce:
 #      queue:
 #        name: etd_produce_queue

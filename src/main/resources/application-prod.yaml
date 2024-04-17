@@ -9,6 +9,6 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://admin:cp6zIfrAPtcogGSR@3.35.218.166:27017/easy-to-dedicate?authSource=admin
+      uri: mongodb+srv://admin:cp6zIfrAPtcogGSR@3.35.218.166:27017/easy-to-dedicate?authSource=admin&retryWrites=true&w=majority
 #      username: admin
 #      password: cp6zIfrAPtcogGSR

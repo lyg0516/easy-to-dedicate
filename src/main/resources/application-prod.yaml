@@ -5,3 +5,10 @@ spring:
     properties:
       hibernate:
         format_sql: false
+
+
+  data:
+    mongodb:
+      uri: mongodb://3.35.218.166:27017/easy-to-dedicate?authSource=admin
+      username: admin
+      password: cp6zIfrAPtcogGSR

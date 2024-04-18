@@ -19,3 +19,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update    # Data Definition Language, Application 실행 시 데이터 정의어 옵션
+
+  data:
+    mongodb:
+      host: ${MONGO_HOST} # localhost
+      port: ${MONGO_PORT} # 27017
+      database: easy-to-dedicate
+      authentication-database: admin
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}

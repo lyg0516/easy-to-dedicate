@@ -12,7 +12,6 @@ spring:
 
   data:
     mongodb:
-#      uri: mongodb://admin:cp6zIfrAPtcogGSR@3.35.218.166:27017/etd?authSource=admin
       uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
       username: ${MONGO_USERNAME}
       password: ${MONGO_PASSWORD}

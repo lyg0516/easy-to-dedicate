@@ -28,7 +28,6 @@ pipeline {
     }
     environment {
         ECR_REPO = credentials('ecr-repo')
-        BUILD_NUMBER=${env.BUILD_ID}
     }
     stages {
         stage('Clone repository') {
@@ -47,7 +46,7 @@ pipeline {
                     /kaniko/executor --context `pwd` \
                     --dockerfile Dockerfile \
                     --verbosity debug \
-                    --destination=${ECR_REPO}:BUILD_NUMBER \
+                    --destination=${ECR_REPO}:${currentBuild.number} \
                     --destination=${ECR_REPO}:latest
                     '''
                 }

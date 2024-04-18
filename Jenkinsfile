@@ -57,8 +57,8 @@ pipeline {
             steps {
                 git branch: 'main', credentialsId: 'ickyc', url: 'https://github.com/easy-to-dedicate/app.git' 
                 
-                sh "git config --global user.email "yechan0329@gmail.com""
-                sh "git config --global user.name "ickyc""
+                sh "git config --global user.email 'yechan0329@gmail.com'"
+                sh "git config --global user.name 'ickyc'"
                 sh "cat ./prod/deployment.yaml | grep image"
                 sh "sed -i 's/image:.*\$/easy-to-dedicate:${BUILD_NUMBER}/g' ./prod/deployment.yaml"
                 sh "git add ./prod/deployment.yaml"

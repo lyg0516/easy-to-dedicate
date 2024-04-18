@@ -1,6 +1,7 @@
 package io.goorm.etdservice.domain.servers.service;
 
-import io.goorm.etdservice.domain.common.types.GameType;
+import io.goorm.etdservice.domain.cluster.Cluster;
+import io.goorm.etdservice.domain.cluster.ClusterRepository;
 import io.goorm.etdservice.domain.games.entity.*;
 import io.goorm.etdservice.domain.games.repository.GameRepository;
 import io.goorm.etdservice.domain.members.Member;
@@ -33,6 +34,7 @@ public class ServerService {
 
     private final ServerRepository serverRepository;
     private final ServerControlRepository serverControlRepository;
+    private final ClusterRepository clusterRepository;
     private final MemberRepository memberRepository;
     private final GameRepository gameRepository;
     private final RabbitMQProducer rabbitMQProducer;
@@ -47,6 +49,9 @@ public class ServerService {
 
         Game game = gameRepository.findById(dto.getGameId())
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+
+        Cluster cluster = clusterRepository.findById(dto.getClusterId())
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 클러스터입니다.."));
 
         // TODO 옵션 별 리소스 설정이 달라야한다. 이 부분을 인터페이스로 별도 구성하면 좋을듯
         // TODO location 은 배포될 위치에 대한 정보이다.
@@ -65,13 +70,13 @@ public class ServerService {
         }
 
         Server server = Server.builder()
+                .cluster(cluster)
                 .member(member)
                 .game(game)
                 .term(dto.getTerm())
                 .cpu(4)
                 .ram(ram)
                 .slot(dto.getSlot())
-//                .location()
                 .days(dto.getDays())
                 .build();
 
@@ -97,7 +102,8 @@ public class ServerService {
             serverControlMessageDto = createInitEnshroudedServerOption(dto, server, control);
         }
 
-        rabbitMQProducer.sendMessage(serverControlMessageDto);
+        rabbitMQProducer.sendServerControlMessage(cluster.getId(),serverControlMessageDto);
+//        rabbitMQProducer.sendMessage(serverControlMessageDto);
         return savedServer.getId();
 
     }
@@ -148,6 +154,8 @@ public class ServerService {
         Server server = serverRepository.findByIdFetchGame(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
 
+        UUID clusterId = server.getCluster().getId();
+
         //TODO 게임 옵션 데이터 조회
         //TODO 서버 컨트롤 요청 명세 데이터화
         //TODO MQ Publishing
@@ -168,7 +176,7 @@ public class ServerService {
                 .gameOption(gameOption)
                 .build();
         // TODO Game Deploy 게임서버 재시작 요청
-        rabbitMQProducer.sendMessage(serverControlMessageDto);
+        rabbitMQProducer.sendServerControlMessage(clusterId, serverControlMessageDto);
 
     }
 
@@ -180,6 +188,8 @@ public class ServerService {
 
         Server server = serverRepository.findByIdFetchGame(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 게임입니다.."));
+
+        UUID clusterId = server.getCluster().getId();
 
         //TODO 서버 컨트롤 요청 명세 데이터화
         //TODO MQ Publishing
@@ -194,7 +204,7 @@ public class ServerService {
                 .controlType(ControlType.DELETE.label())
                 .serverId(server.getId())
                 .build();
-        rabbitMQProducer.sendMessage(serverControlMessageDto);
+        rabbitMQProducer.sendServerControlMessage(clusterId,serverControlMessageDto);
     }
 
     @SneakyThrows

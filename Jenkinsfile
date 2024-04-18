@@ -46,6 +46,7 @@ pipeline {
                     /kaniko/executor --context `pwd` \
                     --dockerfile Dockerfile \
                     --verbosity debug \
+                    --destination=${ECR_REPO}:${currentBuild.number} \
                     --destination=${ECR_REPO}:latest
                     '''
                 }

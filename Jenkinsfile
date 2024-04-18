@@ -63,7 +63,7 @@ pipeline {
                 sh "sed -i 's/image:.*\$/easy-to-dedicate:${BUILD_NUMBER}/g' ./prod/deployment.yaml"
                 sh "git add ./prod/deployment.yaml"
                 sh "git commit -m '[UPDATE] easy-to-dedicate ${BUILD_NUMBER} image versioning'"
-                sshagent(credentials: ['ickyc-ssh']) {
+                sshagent(credentialsId: 'ickyc-ssh') {
                     sh "git remote set-url origin git@github.com:easy-to-dedicate/app.git"
                     sh "git push -u origin main"
                  }

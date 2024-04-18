@@ -6,6 +6,9 @@ spring:
       hibernate:
         format_sql: false
 
+  rabbitmq:
+    ssl:
+      enabled: true
 
   data:
     mongodb:

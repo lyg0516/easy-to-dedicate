@@ -12,7 +12,7 @@ spring:
 #      uri: mongodb://admin:cp6zIfrAPtcogGSR@3.35.218.166:27017/etd?authSource=admin
       host: 3.35.218.166
       port: 27017
-      database: etd
+      database: easy-to-dedicate
       authentication-database: admin
       username: admin
       password: cp6zIfrAPtcogGSR

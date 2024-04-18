@@ -5,13 +5,17 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.servers.dto.vo.SystemData;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ServerControlMessageDto<T> {
-    //TODO 메시지 포맷 변경
+
     private String game;
     private String controlType;
     private UUID serverId;

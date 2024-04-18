@@ -28,6 +28,8 @@ public class Server extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;                  // 서버 소유 멤버
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id",
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Game game;                      // 서버의 게임 종류
     @Enumerated(EnumType.STRING)
     private TermType term;                  // 고정 기간제, 시간제
@@ -64,5 +66,10 @@ public class Server extends BaseEntity {
         this.host = host;
         this.port = port;
         this.days = days;
+    }
+
+    public void setServerHost(String host, Integer port){
+        this.host = host;
+        this.port = port;
     }
 }

@@ -28,7 +28,7 @@ pipeline {
     }
     environment {
         ECR_REPO = credentials('ecr-repo')
-        BUILD_NUMBER=${env.BUILD_NUMBER}
+        BUILD_NUMBER=${env.BUILD_ID}
     }
     stages {
         stage('Clone repository') {

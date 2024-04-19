@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ServerControl extends BaseEntity {
-    //TODO 클래스명 고민하기!
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +27,9 @@ public class ServerControl extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ControlType control;        // 컨트롤 타입, CREATE, RESTART, STOP
     @Enumerated(EnumType.STRING)
-    private ProgressType progress = ProgressType.RECEIVE;
+    private ProgressType progress = ProgressType.RECEIVE;   // 요청 받음, 성공, 실패 에 대한 Enum
     @Column()
-    private String resultMessage;
+    private String resultMessage;       // 게임 디플로이에서 보내주는 성공, 실패에 대한 메세지
     @Column()
     private LocalDateTime appliedAt;    // 적용된 시간
 

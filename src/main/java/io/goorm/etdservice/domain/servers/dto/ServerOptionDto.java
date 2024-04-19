@@ -25,11 +25,14 @@ public class ServerOptionDto {
     private TermType term = TermType.FIXED;     // 고정 서버 형태
     private Integer slot;            // Player Or Ram Slot
     private UUID clusterId;        // Create Location
+    private String host;
+    private Integer port;
     private Integer days = 0;       // for Activate Duration;
     private LocalDateTime createdAt;
 
+
     @Builder
-    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, UUID clusterId, Integer days, LocalDateTime createdAt) {
+    public ServerOptionDto(UUID id, Long gameId, String game, UUID memberId, TermType term, Integer slot, UUID clusterId, String host, Integer port, Integer days, LocalDateTime createdAt) {
         this.id = id;
         this.gameId = gameId;
         this.game = game;
@@ -37,6 +40,8 @@ public class ServerOptionDto {
         this.term = term;
         this.slot = slot;
         this.clusterId = clusterId;
+        this.host = host;
+        this.port = port;
         this.days = days;
         this.createdAt = createdAt;
     }
@@ -48,6 +53,8 @@ public class ServerOptionDto {
                 .term(entity.getTerm())
                 .slot(entity.getSlot())
                 .days(entity.getDays())
+                .host(entity.getHost())
+                .port(entity.getPort())
                 .createdAt(entity.getCreatedAt())
                 .build();
     }

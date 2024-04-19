@@ -25,8 +25,7 @@ export function fetchApi(endpoint, method = 'GET', body = null) {
         .then(async (res) => {
             const statusCode = res.status;
             if (res.ok) {
-                const location = res.headers.get('location');
-                console.log('Location 헤더의 값:', location);
+                // const location = res.headers.get('location');
                 if (res.status !== 204 && res.body != null && res.body != undefined) {
                     return await res.json();
                 }

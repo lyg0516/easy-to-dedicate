@@ -64,8 +64,8 @@ pipeline {
                     sh "git commit -m '[UPDATE] easy-to-dedicate ${BUILD_NUMBER} image versioning'"
                     
                 sshagent(credentials: ['ickyc-ssh']) {
-                    //export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
                     sh '''
+                    export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
                     git remote set-url origin git@github.com:easy-to-dedicate/app.git
                     git push -u origin main
                     '''

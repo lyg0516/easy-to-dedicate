@@ -22,10 +22,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -224,7 +226,11 @@ public class ServerService {
                 ? serverRepository.findByMemberId(memberId)
                 : serverRepository.findAll();
 
-        return servers.stream().map(ServerOptionDto::toDto).collect(Collectors.toList());
+        // 임시 정렬 처리 CreatedAt DESC
+        return servers.stream()
+                .sorted(Comparator.comparing(Server::getCreatedAt).reversed())
+                .map(ServerOptionDto::toDto)
+                .collect(Collectors.toList());
         // TODO Pagenation 구현
     }
 

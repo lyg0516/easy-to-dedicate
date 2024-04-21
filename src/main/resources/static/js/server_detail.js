@@ -1,4 +1,4 @@
-import {deleteServer, getServer, restartServer} from "./server_fetch.js";
+import {deleteServer, getServer, getServerControls, restartServer} from "./server_fetch.js";
 import {getOption, updateOption} from "./option_fetch.js";
 
 const path = window.location.pathname;
@@ -27,6 +27,17 @@ document.addEventListener('DOMContentLoaded',async () => {
     updateOptionUI(options);
 });
 
+// TODO 서버 컨트롤 로그
+document.addEventListener('DOMContentLoaded',async () => {
+    const controls = await getServerControls(serverId);
+    let logText = '';
+    controls.forEach(control => {
+        const row = `[${control['created_at']}][${control['control']}] 진행상황 : ${control['progress']} | 결과 메세지 : ${control['result_message']} | 적용 시간 : ${control['applied_at']}\n`;
+        logText += row;
+    });
+    document.querySelector('.control-logs').value = logText;
+});
+
 
 document.querySelector('#game-opt-update')
     .addEventListener('click', async () => {
@@ -52,9 +63,9 @@ document.querySelector('#game-opt-update')
 /**
  * 서버 컨트롤 버튼 매핑
  */
-document.querySelector('#start-btn').addEventListener('click', () => {
-    window.alert("흐음....")
-});
+// document.querySelector('#start-btn').addEventListener('click', () => {
+//     window.alert("흐음....")
+// });
 document.querySelector('#restart-btn').addEventListener('click', async () => {
     await restartServer(serverId);
     window.alert('재시작 요청 완료');

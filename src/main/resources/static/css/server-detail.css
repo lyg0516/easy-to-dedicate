@@ -42,6 +42,19 @@
     /*flex-direction: column;*/
 }
 
+.controls-area {
+    width: 100%;
+    padding: 20px;
+}
+
+.control-logs {
+    width: 100%;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
 .server-info {
     min-width: 50%;
     display: flex;
@@ -84,3 +97,5 @@
     flex-direction: column;
     padding: 20px 20px 30px;
 }
+
+

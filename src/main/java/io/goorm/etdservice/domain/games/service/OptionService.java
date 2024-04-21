@@ -38,7 +38,7 @@ public class OptionService {
     }
 
     public GameOption resetOption(UUID id) throws DomainException {
-        Server server = serverRepository.findById(id)
+        Server server = serverRepository.findByIdFetchGame(id)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "유효하지 않는 서버 ID 입니다."));
         GameOption gameOption = gameOptionRepository.findById(id)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "유효하지 않는 서버 ID 입니다."));

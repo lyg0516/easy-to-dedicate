@@ -6,6 +6,7 @@ import io.goorm.etdservice.domain.games.entity.*;
 import io.goorm.etdservice.domain.games.repository.GameRepository;
 import io.goorm.etdservice.domain.members.Member;
 import io.goorm.etdservice.domain.members.MemberRepository;
+import io.goorm.etdservice.domain.servers.dto.ServerControlDto;
 import io.goorm.etdservice.domain.servers.dto.ServerControlMessageDto;
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
 import io.goorm.etdservice.domain.servers.dto.vo.SystemData;
@@ -20,6 +21,8 @@ import io.goorm.etdservice.global.message.producer.RabbitMQProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -87,6 +90,8 @@ public class ServerService {
                 .control(ControlType.CREATE)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
+
+        log.info(control.toString());
 
         serverControlRepository.save(control);
 
@@ -156,15 +161,14 @@ public class ServerService {
 
         UUID clusterId = server.getCluster().getId();
 
-        //TODO 게임 옵션 데이터 조회
-        //TODO 서버 컨트롤 요청 명세 데이터화
-        //TODO MQ Publishing
-
         ServerControl control = ServerControl.builder()
                 .server(server)
                 .control(ControlType.RESTART)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
+
+        serverControlRepository.save(control);
+
         GameOption gameOption = gameOptionRepository.findById(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
@@ -194,11 +198,14 @@ public class ServerService {
         //TODO 서버 컨트롤 요청 명세 데이터화
         //TODO MQ Publishing
 
-        ServerControl.builder()
+        ServerControl control = ServerControl.builder()
                 .server(server)
                 .control(ControlType.STOP)
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
+
+        serverControlRepository.save(control);
+
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .controlType(ControlType.DELETE.label())
@@ -249,5 +256,16 @@ public class ServerService {
     }
 
     //TODO 서버 현 상태 조회 기능 추가 필요한지?
+
+    @SneakyThrows
+    public List<ServerControlDto> getServerControlsByServer(UUID serverId) {
+        Server server = serverRepository.findByIdFetchGame(serverId)
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
+//        PageRequest pageRequest = PageRequest
+//                .of(0, 5, Sort.by(Sort.Direction.ASC, "createdAt"));
+        List<ServerControl> controls = serverControlRepository.findAllByServer(server);
+
+        return controls.stream().map(ServerControlDto::toDto).collect(Collectors.toList());
+    }
 
 }

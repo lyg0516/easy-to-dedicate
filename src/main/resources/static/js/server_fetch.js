@@ -45,3 +45,8 @@ export async function deleteServer(serverId) {
     const endpoint = `${PREFIX_URI}/${serverId}`;
     return await commApi.fetchApi(endpoint, 'DELETE');
 }
+
+export async function getServerControls(serverId) {
+    const endpoint = `${PREFIX_URI}/${serverId}/controls`;
+    return await commApi.fetchApi(endpoint);
+}

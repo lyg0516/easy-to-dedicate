@@ -1,5 +1,6 @@
 package io.goorm.etdservice.domain.servers.controller;
 
+import io.goorm.etdservice.domain.servers.dto.ServerControlDto;
 import io.goorm.etdservice.domain.servers.dto.ServerOptionDto;
 import io.goorm.etdservice.domain.servers.service.ServerService;
 import io.goorm.etdservice.global.exception.DomainException;
@@ -57,6 +58,13 @@ public class ServerController {
         // TODO 삭제 로직
         serverService.deleteServer(serverId);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/{serverId}/controls")
+    public ResponseEntity getServerControls(@PathVariable UUID serverId) {
+        List<ServerControlDto> controls = serverService.getServerControlsByServer(serverId);
+        return ResponseEntity.ok().body(controls);
     }
 
 

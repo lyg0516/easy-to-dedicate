@@ -6,10 +6,7 @@ import io.goorm.etdservice.domain.common.entity.BaseEntity;
 import io.goorm.etdservice.domain.servers.types.ControlType;
 import io.goorm.etdservice.domain.servers.types.ProgressType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@ToString
 public class ServerControl extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +38,7 @@ public class ServerControl extends BaseEntity {
         this.id = id;
         this.server = server;
         this.control = control;
-        this.progress = progress;
+        this.progress = progress != null ? progress : ProgressType.RECEIVE;
         this.resultMessage = resultMessage;
         this.appliedAt = appliedAt;
     }

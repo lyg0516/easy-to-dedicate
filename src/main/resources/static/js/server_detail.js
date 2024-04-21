@@ -1,5 +1,5 @@
 import {deleteServer, getServer, getServerControls, restartServer} from "./server_fetch.js";
-import {getOption, updateOption} from "./option_fetch.js";
+import {getOption, resetOption, updateOption} from "./option_fetch.js";
 
 const path = window.location.pathname;
 const split = path.split('/');
@@ -59,6 +59,17 @@ document.querySelector('#game-opt-update')
 
         window.alert('게임 옵션 업데이트 완료!');
 });
+
+document.querySelector('#game-opt-reset')
+    .addEventListener('click', async () =>{
+        await resetOption(serverId);
+        const optData = await getOption(serverId);
+        const options = optData['game_option'];
+        updateOptionUI(options);
+        window.alert('게임 옵션 초기화 완료!');
+    });
+
+
 
 /**
  * 서버 컨트롤 버튼 매핑

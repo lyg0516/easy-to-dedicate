@@ -18,15 +18,16 @@ public class ServerControlResponseMessageDto {
     private Long serverControlId;
     private String host;
     private Integer port;
+    private String message;
 
     @Builder
-
-    public ServerControlResponseMessageDto(String type, UUID serverId, String status, Long serverControlId, String host, Integer port) {
+    public ServerControlResponseMessageDto(String type, UUID serverId, String status, Long serverControlId, String host, Integer port, String message) {
         this.type = type;
         this.serverId = serverId;
         this.status = status;
         this.serverControlId = serverControlId;
         this.host = host;
         this.port = port;
+        this.message = message;
     }
 }

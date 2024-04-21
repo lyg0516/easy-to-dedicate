@@ -43,7 +43,11 @@ public class ServerControl extends BaseEntity {
         this.appliedAt = appliedAt;
     }
 
-
+    public void updateResult(LocalDateTime appliedAt, ProgressType progress, String resultMessage){
+        this.appliedAt = appliedAt;
+        this.progress = progress;
+        this.resultMessage = resultMessage;
+    }
     public void updateResult(LocalDateTime appliedAt) {
         this.appliedAt = appliedAt;
     }

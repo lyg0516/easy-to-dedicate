@@ -130,7 +130,7 @@ public class ServerService {
                 .build();
         GameOption<?> gameOptionEntity = GameOption.builder()
                 .serverID(server.getId())
-                .gameOption(gameOption)
+                .gameOption(new EnshroudedOptionMessage(gameOption))
                 .build();
         gameOptionRepository.save(gameOptionEntity);
         return serverControlMessageDto;

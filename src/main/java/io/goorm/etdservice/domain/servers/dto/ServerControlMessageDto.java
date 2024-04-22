@@ -1,6 +1,7 @@
 package io.goorm.etdservice.domain.servers.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.goorm.etdservice.domain.servers.dto.vo.SystemData;
@@ -17,7 +18,10 @@ import java.util.UUID;
 public class ServerControlMessageDto<T> {
 
     private String game;
+
+    @JsonProperty("type")
     private String controlType;
+    
     private UUID serverId;
     private String containerImage;
     private Long serverControlId;

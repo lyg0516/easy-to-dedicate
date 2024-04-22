@@ -122,7 +122,7 @@ public class ServerService {
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .containerImage("sknnr/enshrouded-dedicated-server:v2.0.5")
-                .controlType(ControlType.CREATE.label())
+                .controlType(ControlType.CREATE.name())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -141,7 +141,7 @@ public class ServerService {
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .containerImage("thijsvanloef/palworld-server-docker:latest")
-                .controlType(ControlType.CREATE.label())
+                .controlType(ControlType.CREATE.name())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -175,7 +175,7 @@ public class ServerService {
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType(ControlType.RESTART.label())
+                .controlType(ControlType.RESTART.name())
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
@@ -210,7 +210,7 @@ public class ServerService {
 
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
-                .controlType(ControlType.DELETE.label())
+                .controlType(ControlType.DELETE.name())
                 .serverId(server.getId())
                 .build();
         rabbitMQProducer.sendServerControlMessage(clusterId,serverControlMessageDto);

@@ -21,7 +21,7 @@ public class ServerControlMessageDto<T> {
 
     @JsonProperty("type")
     private String controlType;
-    
+
     private UUID serverId;
     private String containerImage;
     private Long serverControlId;

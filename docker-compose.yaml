@@ -7,7 +7,7 @@ services:
     restart: always
     # 환경 변수
     environment:
-      - POSTGRES_DB=${POSTGRES_DB} # etd
+      - POSTGRES_DB=${POSTGRES_DB} # etdd
       - POSTGRES_USER=${POSTGRES_USER} # postgres
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD} # etd112233
     ports:  # 외부 포트포워딩 (DB Admin Tool 데이터 확인 목적으로 사용 중)

@@ -27,7 +27,7 @@ pipeline {
         }
     }
     environment {
-        ECR_REPO = credentials('ecr-repo')
+        ECR_REPO = credentials('ecr_repo')
     }
     stages {
         stage('Clone repository') {

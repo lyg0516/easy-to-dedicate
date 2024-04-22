@@ -23,7 +23,10 @@ public class ServerControlMessageDto<T> {
     private String controlType;
 
     private UUID serverId;
+
+    @JsonProperty("image")
     private String containerImage;
+    
     private Long serverControlId;
     private SystemData systemData;
     private T gameOption;

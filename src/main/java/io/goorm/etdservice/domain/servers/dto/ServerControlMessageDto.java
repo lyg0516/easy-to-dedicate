@@ -26,7 +26,7 @@ public class ServerControlMessageDto<T> {
 
     @JsonProperty("image")
     private String containerImage;
-    
+
     private Long serverControlId;
     private SystemData systemData;
     private T gameOption;

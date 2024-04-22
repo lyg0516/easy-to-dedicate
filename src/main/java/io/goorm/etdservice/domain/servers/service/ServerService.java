@@ -95,7 +95,7 @@ public class ServerService {
 
         log.info(control.toString());
 
-        serverControlRepository.save(control);
+        ServerControl savedServerControl = serverControlRepository.save(control);
 
         // TODO Game Deploy 게임서버 생성 요청
         // TODO 요청 명세서 작성
@@ -104,9 +104,9 @@ public class ServerService {
         ServerControlMessageDto<?> serverControlMessageDto = null;
         // TODO MQ 퍼블리싱
         if(server.getGame().getName().equals("Palworld")){
-            serverControlMessageDto = createInitPalworldServerOption(dto, server, control);
+            serverControlMessageDto = createInitPalworldServerOption(dto, server, savedServerControl);
         } else if(server.getGame().getName().equals("Enshrouded")){
-            serverControlMessageDto = createInitEnshroudedServerOption(dto, server, control);
+            serverControlMessageDto = createInitEnshroudedServerOption(dto, server, savedServerControl);
         }
 
         rabbitMQProducer.sendServerControlMessage(cluster.getId(),serverControlMessageDto);
@@ -169,7 +169,7 @@ public class ServerService {
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
 
-        serverControlRepository.save(control);
+        ServerControl savedServerControl = serverControlRepository.save(control);
 
         GameOption gameOption = gameOptionRepository.findById(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버입니다."));
@@ -177,7 +177,7 @@ public class ServerService {
                 .game(server.getGame().getName())
                 .controlType(ControlType.RESTART.name())
                 .serverId(server.getId())
-                .serverControlId(control.getId())
+                .serverControlId(savedServerControl.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
                 .gameOption(gameOption)
                 .build();
@@ -206,11 +206,12 @@ public class ServerService {
 //                .appliedAt()  // TODO 생성이 완료 된 후 적용할 것인지에 대한 부분
                 .build();
 
-        serverControlRepository.save(control);
+        ServerControl savedServerControl = serverControlRepository.save(control);
 
         ServerControlMessageDto<?> serverControlMessageDto = ServerControlMessageDto.builder()
                 .game(server.getGame().getName())
                 .controlType(ControlType.DELETE.name())
+                .serverControlId(savedServerControl.getId())
                 .serverId(server.getId())
                 .build();
         rabbitMQProducer.sendServerControlMessage(clusterId,serverControlMessageDto);

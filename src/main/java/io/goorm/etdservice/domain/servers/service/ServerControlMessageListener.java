@@ -9,6 +9,7 @@ import io.goorm.etdservice.domain.servers.types.ProgressType;
 import io.goorm.etdservice.global.exception.DomainException;
 import io.goorm.etdservice.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ServerControlMessageListener {
 
     private final ServerControlRepository serverControlRepository;
@@ -28,6 +30,9 @@ public class ServerControlMessageListener {
     @Transactional
     public void responseServerControl(ServerControlResponseMessageDto responseMessageDto) throws DomainException {
         //TODO response 처리
+        log.info("message: {} " , responseMessageDto);
+        if(responseMessageDto.getServerId() == null || responseMessageDto.getServerControlId() == null)
+            throw new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버 입니다.");
         UUID serverId = responseMessageDto.getServerId();
         Server server = serverRepository.findById(serverId)
                 .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND_DATA, "존재하지 않는 서버 입니다."));

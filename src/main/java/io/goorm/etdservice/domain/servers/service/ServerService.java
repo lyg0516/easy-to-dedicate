@@ -126,11 +126,11 @@ public class ServerService {
                 .serverId(server.getId())
                 .serverControlId(control.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
-                .gameOption(gameOption)
+                .gameOption(new EnshroudedOptionMessage(gameOption))
                 .build();
         GameOption<?> gameOptionEntity = GameOption.builder()
                 .serverID(server.getId())
-                .gameOption(new EnshroudedOptionMessage(gameOption))
+                .gameOption(gameOption)
                 .build();
         gameOptionRepository.save(gameOptionEntity);
         return serverControlMessageDto;

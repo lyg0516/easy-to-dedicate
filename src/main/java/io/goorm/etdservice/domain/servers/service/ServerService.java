@@ -179,7 +179,7 @@ public class ServerService {
                 .serverId(server.getId())
                 .serverControlId(savedServerControl.getId())
                 .systemData(new SystemData(server.getCpu(), server.getRam()))
-                .gameOption(gameOption)
+                .gameOption(gameOption.getGameOption())
                 .build();
         // TODO Game Deploy 게임서버 재시작 요청
         rabbitMQProducer.sendServerControlMessage(clusterId, serverControlMessageDto);

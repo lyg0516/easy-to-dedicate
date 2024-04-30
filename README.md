@@ -7,5 +7,7 @@
 
 <img width="1002" alt="image" src="https://github.com/lyg0516/easy-to-dedicate/assets/91305949/07ab93d1-99f6-4e0d-90f9-6dfa6c5f365e">
 <img width="1009" alt="image" src="https://github.com/lyg0516/easy-to-dedicate/assets/91305949/756f1a32-79ba-4623-8a7f-7ed90320bc5c">
+<img width="1011" alt="image" src="https://github.com/lyg0516/easy-to-dedicate/assets/91305949/49251a14-9873-4de8-81f7-985e40522af2">
+
  시연영상
 https://drive.google.com/file/d/1bli3vFiRtO_YF5u2iNubGCYNUMgR9KK7/view?usp=sharing
